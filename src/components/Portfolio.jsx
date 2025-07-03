@@ -88,10 +88,10 @@ const Portfolio = () => {
 </div> */}
 
 
-
+<Navbar />
       {/* Main Content */}
       <div className="max-w-4xl mx-auto p-6 shadow-xl rounded-xl mt-10 bg-black">
-        <Navbar />
+        
         {/* Profile Section */}
         <div className="flex items-center space-x-6">
           <img
@@ -121,18 +121,28 @@ const Portfolio = () => {
 
         {/* Skills Section */}
         <div className="mt-8">
-          <h2 className="text-xl font-semibold mb-4">Skills</h2>
-          <div className="flex flex-wrap gap-4">
-            {skills.map((skill) => (
-              <div
-                key={skill.name}
-                className="flex flex-col items-center bg-gray-900 p-4 rounded-lg w-24 hover:shadow-lg transition"
-              >
-                {skill.icon}
-                <span className="mt-2 text-sm text-white text-center">{skill.name}</span>
-              </div>
-            ))}
-          </div>
+        <div className="flex flex-wrap gap-4 justify-center">
+  {skills.map((skill) => (
+    <div
+      key={skill.name}
+      className="
+        flex flex-col items-center 
+        bg-gray-900 p-4 rounded-lg 
+        hover:shadow-lg transition
+        basis-[calc((100%/3)-1rem)]  /* 3 items per row minus gap */
+        sm:basis-[calc((100%/4)-1rem)] /* 4 items per row on sm */
+        md:basis-[calc((100%/6)-1rem)] /* 6 items per row on md */
+        max-w-[calc((100%/3)-1rem)]  /* restrict max width */
+        sm:max-w-[calc((100%/4)-1rem)]
+        md:max-w-[calc((100%/6)-1rem)]
+      "
+    >
+      {skill.icon}
+      <span className="mt-2 text-sm text-gray-500 text-center">{skill.name}</span>
+    </div>
+  ))}
+</div>
+
           <Projects />
         </div>
 

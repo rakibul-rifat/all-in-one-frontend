@@ -1,14 +1,16 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
-    { name: "Home", href: "#" },
-    { name: "About", href: "#about" },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/About" },
     { name: "Projects", href: "/Projects" },
-    { name: "Contact", href: "#contact" },
-    { name: "Blog", href: "#blog" },
+    { name: "Contact", href: "/Contact" },
+    { name: "Blog", href: "/Blog" },
   ];
 
   return (
@@ -60,21 +62,30 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Links */}
-      {menuOpen && (
-        <div className="md:hidden px-4 pb-4 space-y-2 bg-gray-900 rounded-xl text-center shadow">
-          {links.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="block text-gray-700 hover:text-cyan-600 transition font-medium"
-              onClick={() => setMenuOpen(false)}
-            >
-              {link.name}
-            </a>
-          ))}
-        </div>
-      )}
+    {/* Mobile Links with framer-motion animation */}
+<AnimatePresence>
+  {menuOpen && (
+    <motion.div
+      className="md:hidden pt-10 px-4 pb-10 space-y-2 bg-gray-900 rounded-xl text-center shadow"
+      initial={{ opacity: 0, height: 0 }}
+      animate={{ opacity: 1, height: "auto" }}
+      exit={{ opacity: 0, height: 0 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+    >
+      {links.map((link) => (
+        <a
+          key={link.name}
+          href={link.href}
+          className="block text-gray-700 hover:text-cyan-600 transition font-medium"
+          onClick={() => setMenuOpen(false)}
+        >
+          {link.name}
+        </a>
+      ))}
+    </motion.div>
+  )}
+</AnimatePresence>
+
     </nav>
   );
 };

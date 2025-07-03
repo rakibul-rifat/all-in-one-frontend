@@ -4,7 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Todo from './components/Todo';
 import Home from './components/Home';
 import BanglaTypingPractice from "./components/BanglaTypingPractice.jsx"
-import Projects from './components/Projects.jsx';
+import About from './pages/About.jsx';
+import Contact from './pages/Contact.jsx';
+import Project from './pages/Project.jsx';
+import Blog from './pages/Blog.jsx';
 
 
 function App() {
@@ -15,7 +18,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Todo" element={<Todo />} />
           <Route path="/BanglaTypingPractice" element={<BanglaTypingPractice />} />
-          <Route path="/Projects" element={<Projects />} />
+          <Route path="/Projects" element={<Project />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/Contact" element={<Contact />} />
+          <Route path="/Blog" element={<Blog />} />
         </Routes>
       
     </Router>
