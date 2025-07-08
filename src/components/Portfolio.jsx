@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Navbar from "./Navbar";
 import {
   FaReact,
   FaJs,
@@ -18,7 +17,7 @@ import {
   SiCss3,
 } from "react-icons/si";
 import gsap from "gsap";
-import Projects from "./Projects";
+
 
 const Portfolio = () => {
  useEffect(() => {
@@ -69,26 +68,7 @@ const Portfolio = () => {
 
   return (
     <>
-     {/* Loader */}
-{/* <div
-  id="loader-wrapper"
-  className="fixed inset-0 bg-black flex flex-col items-center justify-center z-50"
->
-  <p className="text-cyan-400 mb-2">loading</p>
-  <div className="w-64 h-2 bg-gray-700 rounded-full overflow-hidden">
-    <div
-      id="loader-bar"
-      className="h-full bg-cyan-400 rounded-full"
-      style={{ width: "0%" }}
-    ></div>
-  </div>
-  <p id="loader-percentage" className="text-cyan-400 mt-2">
-    0%
-  </p>
-</div> */}
 
-
-<Navbar />
       {/* Main Content */}
       <div className="max-w-4xl mx-auto p-6 shadow-xl rounded-xl mt-10 bg-black">
         
@@ -97,7 +77,7 @@ const Portfolio = () => {
           <img
             src="https://avatars.githubusercontent.com/u/192508513?v=4"
             alt="Profile"
-            className="w-32 h-32 rounded-full object-cover border-4 border-cyan-500"
+            className="w-32 h-32 rounded-full object-cover border-4 border-gray-500"
           />
           <div>
             <h1 className="text-3xl text-gray-500 font-bold">Rakibul Islam</h1>
@@ -143,7 +123,7 @@ const Portfolio = () => {
   ))}
 </div>
 
-          <Projects />
+       
         </div>
 
         {/* Projects Section */}

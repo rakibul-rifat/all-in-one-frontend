@@ -68,7 +68,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-800 pt-5 pb-5">
       <div className="max-w-xl mx-auto bg-gray-900 rounded-xl shadow p-6 text-gray-400">
-        <h1 className="text-2xl font-bold mb-4 text-center">MERN Todo App</h1>
+        <h1 className="text-2xl font-bold mb-4 text-center">Todo App</h1>
         
         <div className="flex flex-col sm:flex-row gap-2 mb-4">
           <input

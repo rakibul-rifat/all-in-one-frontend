@@ -6,7 +6,7 @@ const projectList = [
   { name: "Portfolio Website", path: "https://rakibul-rifat.netlify.app/" },
   { name: "Todo", path: "/Todo" },
   { name: "Bangla Typing Practice", path: "/BanglaTypingPractice" },
-  { name: "Dashboard App", path: "/project4" },
+  { name: "TodoApp", path: "/TodoApp" },
   { name: "Landing Page", path: "/project5" },
 ];
 

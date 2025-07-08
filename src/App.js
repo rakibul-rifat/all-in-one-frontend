@@ -8,6 +8,7 @@ import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx';
 import Project from './pages/Project.jsx';
 import Blog from './pages/Blog.jsx';
+import TodoApp from './components/TodoApp.jsx';
 
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
           <Route path="/About" element={<About />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Blog" element={<Blog />} />
+           <Route path="/TodoApp" element={<TodoApp />} />
+         
         </Routes>
       
     </Router>
