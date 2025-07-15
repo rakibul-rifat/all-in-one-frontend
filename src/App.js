@@ -9,7 +9,7 @@ import Contact from './pages/Contact.jsx';
 import Project from './pages/Project.jsx';
 import Blog from './pages/Blog.jsx';
 import TodoApp from './components/TodoApp.jsx';
-
+import ImageSearch from './components/ImageSearch.jsx';
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Blog" element={<Blog />} />
            <Route path="/TodoApp" element={<TodoApp />} />
+           <Route path="/ImageSearch" element={<ImageSearch />} />
          
         </Routes>
       

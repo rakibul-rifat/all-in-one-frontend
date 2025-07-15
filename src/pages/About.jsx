@@ -29,7 +29,7 @@ export default function About() {
       <section className="mb-12">
         {/* Paragraph 1 - slide from right */}
         <motion.p
-          className="text-lg leading-relaxed text-gray-800 dark:text-gray-200"
+          className="text-lg leading-relaxed text-gray-600 dark:text-gray-800"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
@@ -41,7 +41,7 @@ export default function About() {
 
         {/* Paragraph 2 - slide from left */}
         <motion.p
-          className="mt-4 text-lg leading-relaxed text-gray-800 dark:text-gray-200"
+          className="mt-4 text-lg leading-relaxed text-gray-600 dark:text-gray-800"
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
@@ -71,12 +71,12 @@ export default function About() {
         {skills.map((skill) => (
           <motion.div
             key={skill.name}
-            className="flex flex-col items-center bg-gray-900 p-6 rounded-lg hover:shadow-lg transition w-24"
+            className="flex flex-col items-center text-gray-600 bg-gray-900 px-20 py-5 rounded-lg hover:shadow-lg transition w-24"
             whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.95 }}
           >
             <div>{skill.icon}</div>
-            <span className="mt-3 text-white font-medium text-center">{skill.name}</span>
+            <span className="mt-3 text-gray-600 font-medium text-center">{skill.name}</span>
           </motion.div>
         ))}
       </motion.div>

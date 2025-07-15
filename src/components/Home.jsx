@@ -38,7 +38,7 @@ const Home = () => {
         id="loader-wrapper"
         className="fixed inset-0 bg-black flex flex-col items-center justify-center z-50"
       >
-        <p className="text-cyan-400 mb-2">loading</p>
+        <p className="text-cyan-400 mb-2">Loading</p>
         <div className="w-64 h-2 bg-gray-700 rounded-full overflow-hidden">
           <div
             id="loader-bar"

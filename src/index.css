@@ -1,14 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+ font-family: "Michroma", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
-}
+};
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.michroma-regular {
+  font-family: "Michroma", sans-serif;
+  font-weight: 200;
+  font-style: normal;
 }

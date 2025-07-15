@@ -55,7 +55,7 @@ const Portfolio = () => {
     { name: "Tailwind", icon: <SiTailwindcss className="text-cyan-400" /> },
     { name: "Bootstrap", icon: <FaBootstrap className="text-purple-600" /> },
     { name: "Framer Motion", icon: <SiFramer className="text-pink-500" /> },
-    { name: "Animate.css", icon: <SiCss3 className="text-indigo-500" /> },
+    { name: "Animate. css", icon: <SiCss3 className="text-indigo-500" /> },
     { name: "Netlify", icon: <SiNetlify className="text-green-400" /> },
     { name: "Vercel", icon: <SiVercel className="text-black" /> },
   ];
@@ -80,8 +80,8 @@ const Portfolio = () => {
             className="w-32 h-32 rounded-full object-cover border-4 border-gray-500"
           />
           <div>
-            <h1 className="text-3xl text-gray-500 font-bold">Rakibul Islam</h1>
-            <p className="text-gray-600">Frontend Web Developer 💻</p>
+            <h1 className="text-xl text-gray-500 font-bold">Rakibul Islam</h1>
+            <p className="text-gray-600">Frontend Web Developer</p>
             <p className="text-gray-500">I love creating beautiful and interactive user interfaces.</p>
             <div className="flex space-x-4 mt-2">
               {socials.map((social) => (
@@ -101,13 +101,13 @@ const Portfolio = () => {
 
         {/* Skills Section */}
         <div className="mt-8">
-        <div className="flex flex-wrap gap-4 justify-center">
+        <div className="flex flex-wrap gap-4  justify-center">
   {skills.map((skill) => (
     <div
       key={skill.name}
       className="
-        flex flex-col items-center 
-        bg-gray-900 p-4 rounded-lg 
+        flex  flex-col items-center 
+        bg-gray-900  p-4 rounded-lg 
         hover:shadow-lg transition
         basis-[calc((100%/3)-1rem)]  /* 3 items per row minus gap */
         sm:basis-[calc((100%/4)-1rem)] /* 4 items per row on sm */
