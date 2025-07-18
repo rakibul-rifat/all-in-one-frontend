@@ -107,7 +107,7 @@ const Portfolio = () => {
       key={skill.name}
       className="
         flex  flex-col items-center 
-        bg-gray-900  p-4 rounded-lg 
+        bg-gray-900  p-4 py-5 rounded-lg 
         hover:shadow-lg transition
         basis-[calc((100%/3)-1rem)]  /* 3 items per row minus gap */
         sm:basis-[calc((100%/4)-1rem)] /* 4 items per row on sm */

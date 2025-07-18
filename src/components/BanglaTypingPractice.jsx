@@ -59,7 +59,7 @@ function BanglaTypingPractice() {
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
       transition={{ duration: 0.6 }}
-      className="max-w-2xl mx-auto p-6 bg-gray-900 text-gray-300 rounded shadow mt-5"
+      className="max-w-2xl mx-auto p-2 bg-black text-gray-300 rounded shadow mt-5"
     >
       <h2 className="text-xl font-bold mb-3 text-center">Bangla Typing Practice (Bijoy 52)</h2>
 
