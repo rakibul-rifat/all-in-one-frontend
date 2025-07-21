@@ -4,6 +4,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Link } from 'react-router-dom';
 
+
 export default function BlogPage() {
   const [blogs, setBlogs] = useState([]);
   const [title, setTitle] = useState("");
