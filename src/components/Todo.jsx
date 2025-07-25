@@ -12,7 +12,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('https://all-in-one-backend-flame.vercel.app/api/todos')
+    axios.get('https://blog-backend-production-1a24.up.railway.app/api/todos')
       .then(res => setTodos(res.data))
       .finally(() => setLoading(false));
   }, []);
@@ -22,12 +22,12 @@ function App() {
     const payload = { text, color };
 
     if (editId) {
-      axios.put(`https://all-in-one-backend-flame.vercel.app/api/todos/${editId}`, payload).then(res => {
+      axios.put(`https://blog-backend-production-1a24.up.railway.app/api/todos/${editId}`, payload).then(res => {
         setTodos(todos.map(todo => todo._id === editId ? res.data : todo));
         resetForm();
       });
     } else {
-      axios.post('https://all-in-one-backend-flame.vercel.app/api/todos', payload).then(res => {
+      axios.post('https://blog-backend-production-1a24.up.railway.app/api/todos', payload).then(res => {
         setTodos([res.data, ...todos]);
         resetForm();
       });
@@ -35,7 +35,7 @@ function App() {
   };
 
   const deleteTodo = id => {
-    axios.delete(`https://all-in-one-backend-flame.vercel.app/api/todos/${id}`).then(() => {
+    axios.delete(`https://blog-backend-production-1a24.up.railway.app/api/todos/${id}`).then(() => {
       setTodos(todos.filter(todo => todo._id !== id));
     });
   };
@@ -66,8 +66,8 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 pt-5 pb-5">
-      <div className="max-w-xl mx-auto bg-gray-900 rounded-xl shadow p- text-gray-400">
+    <div className="min-h-screen bg-gray-900  pt-5 pb-5">
+      <div className="max-w-xl mx-auto p-2 bg-gray-900 rounded-xl shadow p- text-gray-400">
         <h1 className="text-2xl font-bold mb-4 text-center">Todo App</h1>
         
         <div className="flex flex-col sm:flex-row gap-2 mb-4">
