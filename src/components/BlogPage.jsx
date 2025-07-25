@@ -18,7 +18,7 @@ export default function BlogPage() {
 
   // Fetch blogs
   const fetchBlogs = async () => {
-    const res = await axios.get("http://localhost:5000/api/blogs");
+    const res = await axios.get("https://all-in-one-backend-flame.vercel.app/api/blogs");
     setBlogs(res.data);
   };
 
@@ -29,7 +29,7 @@ export default function BlogPage() {
   // Login
   const handleLogin = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
+      const res = await axios.post("https://all-in-one-backend-flame.vercel.app/api/auth/login", {
         email: auth.email,
         password: auth.password,
       });
@@ -57,13 +57,13 @@ export default function BlogPage() {
     try {
       if (editingId) {
         await axios.put(
-          `http://localhost:5000/api/blogs/${editingId}`,
+          `https://all-in-one-backend-flame.vercel.app/blogs/${editingId}`,
           formData,
           config
         );
         alert("✏️ Blog updated");
       } else {
-        await axios.post("http://localhost:5000/api/blogs", formData, config);
+        await axios.post("https://all-in-one-backend-flame.vercel.app/api/blogs", formData, config);
         alert("✅ Blog created");
       }
 
@@ -87,7 +87,7 @@ export default function BlogPage() {
   // Delete blog
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/blogs/${id}`, {
+      await axios.delete(`https://all-in-one-backend-flame.vercel.app/api/blogs/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -178,7 +178,7 @@ export default function BlogPage() {
           >
             <h3 className="text-xl text-gray-200 font-bold">{blog.title}</h3>
             <img
-              src={blog.image ? `http://localhost:5000/uploads/${blog.image}` : ""}
+              src={blog.image ? `https://all-in-one-backend-flame.vercel.app/uploads/${blog.image}` : ""}
               alt=""
               className="w-full aspect-video rounded"
             />

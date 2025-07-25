@@ -12,7 +12,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/todos')
+    axios.get('https://all-in-one-backend-flame.vercel.app/api/todos')
       .then(res => setTodos(res.data))
       .finally(() => setLoading(false));
   }, []);
@@ -22,12 +22,12 @@ function App() {
     const payload = { text, color };
 
     if (editId) {
-      axios.put(`http://localhost:5000/api/todos/${editId}`, payload).then(res => {
+      axios.put(`https://all-in-one-backend-flame.vercel.app/api/todos/${editId}`, payload).then(res => {
         setTodos(todos.map(todo => todo._id === editId ? res.data : todo));
         resetForm();
       });
     } else {
-      axios.post('http://localhost:5000/api/todos', payload).then(res => {
+      axios.post('https://all-in-one-backend-flame.vercel.app/api/todos', payload).then(res => {
         setTodos([res.data, ...todos]);
         resetForm();
       });
@@ -35,7 +35,7 @@ function App() {
   };
 
   const deleteTodo = id => {
-    axios.delete(`http://localhost:5000/api/todos/${id}`).then(() => {
+    axios.delete(`https://all-in-one-backend-flame.vercel.app/api/todos/${id}`).then(() => {
       setTodos(todos.filter(todo => todo._id !== id));
     });
   };
