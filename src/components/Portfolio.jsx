@@ -122,12 +122,24 @@ const Portfolio = () => {
     </div>
   ))}
 </div>
-
-       
         </div>
-
-        {/* Projects Section */}
-       
+        <div className="flex mt-10 flex-col items-center justify-center gap-6 p-6 bg-gray-900 rounded-2xl shadow-lg">
+      <h2 className="text-2xl md:text-3xl font-bold text-white text-center">
+        📈 GitHub Stats
+      </h2>
+      <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+        <img
+          src="https://github-readme-stats.vercel.app/api?username=Rakibul-Rifat&show_icons=true&theme=radical"
+          alt="Rakibul's GitHub stats"
+          className="w-full max-w-md rounded-xl"
+        />
+        <img
+          src="https://github-readme-stats.vercel.app/api/top-langs/?username=Rakibul-Rifat&layout=compact&theme=radical"
+          alt="Top Languages"
+          className="w-full max-w-xs rounded-xl"
+        />
+      </div>
+    </div>
       </div>
     </>
   );
