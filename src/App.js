@@ -9,6 +9,8 @@ import Contact from './pages/Contact.jsx';
 import Project from './pages/Project.jsx';
 import Blog from './pages/Blog.jsx';
 import BlogPage from './components/BlogPage.jsx';
+import Calculator from './components/Calculator.jsx';
+import HomeBtn from './components/HomeBtn.jsx';
 // import ImageSearch from './components/ImageSearch.jsx';
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Blog" element={<Blog />} />
            <Route path="/BlogPage" element={<BlogPage />} />
+           <Route path="/Calculator" element={<Calculator />} />
+              <Route path="/HomeBtn" element={<HomeBtn />} />
            {/* <Route path="/ImageSearch" element={<ImageSearch />} /> */}
          
         </Routes>

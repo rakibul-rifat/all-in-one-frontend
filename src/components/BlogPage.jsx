@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { Link } from 'react-router-dom';
+import HomeBtn from "./HomeBtn";
+
 
 
 export default function BlogPage() {
@@ -247,13 +248,7 @@ export default function BlogPage() {
           </button>
         ))}
       </div>
-       {/* Floating Go to Home button */}
-            <Link
-        to="/"
-        className="fixed bottom-5 right-5 bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-700 transition"
-      >
-        Home
-      </Link>
+      <HomeBtn />
     </div>
   );
 }

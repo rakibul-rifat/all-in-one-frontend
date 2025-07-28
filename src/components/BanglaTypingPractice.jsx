@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import HomeBtn from './HomeBtn';
 
 function BanglaTypingPractice() {
   const [targetText, setTargetText] = useState('আমি বাংলায় গান গাই, আমি বাংলার গান গাই।');
@@ -108,14 +108,7 @@ function BanglaTypingPractice() {
       >
         {isFinished ? 'Restart' : 'Reset'}
       </button>
-
-      {/* Floating Go to Home button */}
-      <Link
-        to="/"
-        className="fixed bottom-5 right-5 bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-700 transition"
-      >
-        Home
-      </Link>
+<HomeBtn />
     </motion.div>
   );
 }
