@@ -114,7 +114,6 @@ export default function BlogPage() {
 
   return (
     <div className="max-w-4xl mx-auto p-4 space-y-6">
-      <h1 className="text-3xl text-gray-500 font-bold">📝 Blog Manager</h1>
 
       {/* Login */}
       {!auth.token && (
@@ -178,7 +177,7 @@ export default function BlogPage() {
           >
             <h3 className="text-xl text-gray-200 font-bold">{blog.title}</h3>
             <img
-              src={blog.image ? `https://blog-backend-production-1a24.up.railway.app/api/blogs/${blog.image}` : ""}
+              src={blog.image ? `https://blog-backend-production-1a24.up.railway.app/uploads/${blog.image}` : ""}
               alt=""
               className="w-full aspect-video rounded"
             />
