@@ -3,21 +3,45 @@ import { motion } from 'framer-motion';
 import HomeBtn from './HomeBtn';
 
 function BanglaTypingPractice() {
-  const [targetText, setTargetText] = useState('আমি বাংলায় গান গাই, আমি বাংলার গান গাই।');
+  const [targetText, setTargetText] = useState('');
   const [userInput, setUserInput] = useState('');
   const [startTime, setStartTime] = useState(null);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
+  const [timeLimit, setTimeLimit] = useState(5); // default 5 minutes
+  const totalSeconds = timeLimit * 60;
+
+  // Fetch a random Bangla sentence from API
+  const fetchRandomSentence = async () => {
+    try {
+      const response = await fetch('https://blog-backend-production-1a24.up.railway.app/api/sentences/random'); // 🔁 Replace with actual URL
+      const data = await response.json();
+      setTargetText(data.text);
+    } catch (error) {
+      console.error('Failed to fetch sentence:', error);
+      setTargetText('আমি বাংলায় গান গাই।'); // fallback
+    }
+  };
+
+  useEffect(() => {
+    fetchRandomSentence();
+  }, []);
 
   useEffect(() => {
     let timer;
     if (startTime && !isFinished) {
       timer = setInterval(() => {
-        setElapsedTime(Math.floor((Date.now() - startTime) / 1000));
+        const secondsPassed = Math.floor((Date.now() - startTime) / 1000);
+        setElapsedTime(secondsPassed);
+
+        if (secondsPassed >= totalSeconds) {
+          setIsFinished(true);
+          clearInterval(timer);
+        }
       }, 1000);
     }
     return () => clearInterval(timer);
-  }, [startTime, isFinished]);
+  }, [startTime, isFinished, totalSeconds]);
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -47,12 +71,15 @@ function BanglaTypingPractice() {
     return minutes > 0 ? Math.round(words / minutes) : 0;
   };
 
-  const resetTest = () => {
+  const resetTest = async () => {
     setUserInput('');
     setStartTime(null);
     setElapsedTime(0);
     setIsFinished(false);
+    await fetchRandomSentence(); // new sentence
   };
+
+  const timeLeft = Math.max(0, totalSeconds - elapsedTime);
 
   return (
     <motion.div
@@ -63,12 +90,21 @@ function BanglaTypingPractice() {
     >
       <h2 className="text-xl font-bold mb-3 text-center">Bangla Typing Practice (Bijoy 52)</h2>
 
-      <textarea
-        value={targetText}
-        onChange={(e) => setTargetText(e.target.value)}
-        className="w-full p-2 mb-3 border rounded bg-gray-800 text-white"
-        rows={3}
-      />
+      <div className="mb-3 text-center">
+        <label className="mr-2">🕒 Set Time Limit:</label>
+        <select
+          value={timeLimit}
+          onChange={(e) => setTimeLimit(Number(e.target.value))}
+          disabled={startTime !== null}
+          className="p-1 bg-gray-700 text-white rounded"
+        >
+          {Array.from({ length: 30 }, (_, i) => (
+            <option key={i + 1} value={i + 1}>
+              {i + 1} minute{(i + 1) > 1 && 's'}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <div
         className="w-full p-3 mb-3 border rounded bg-gray-800 text-white"
@@ -97,7 +133,7 @@ function BanglaTypingPractice() {
       />
 
       <div className="flex flex-wrap justify-between text-sm mb-3">
-        <p>⏰ Time: {elapsedTime}s</p>
+        <p>⏰ Time Left: {Math.floor(timeLeft / 60)}m {timeLeft % 60}s</p>
         <p>✅ Accuracy: {calculateAccuracy()}%</p>
         <p>🏃‍♂️ WPM: {calculateWPM()}</p>
       </div>
@@ -108,7 +144,8 @@ function BanglaTypingPractice() {
       >
         {isFinished ? 'Restart' : 'Reset'}
       </button>
-<HomeBtn />
+
+      <HomeBtn />
     </motion.div>
   );
 }

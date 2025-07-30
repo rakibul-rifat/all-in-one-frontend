@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import HomeBtn from "./HomeBtn";
 
 export default function Calculator() {
-  const [amount, setAmount] = useState(10000);
-  const [rate, setRate] = useState(5);
-  const [duration, setDuration] = useState(12); // in months
+  const [amount, setAmount] = useState(0);
+  const [rate, setRate] = useState(0);
+  const [duration, setDuration] = useState(0); // in months
   const [type, setType] = useState("simple");
   const [compoundFrequency, setCompoundFrequency] = useState("12"); // monthly
 
