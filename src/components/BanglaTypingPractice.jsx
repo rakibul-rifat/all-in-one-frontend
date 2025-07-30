@@ -107,8 +107,8 @@ function BanglaTypingPractice() {
       </div>
 
       <div
-        className="w-full p-3 mb-3 border rounded bg-gray-800 text-white"
-        style={{ minHeight: '120px', whiteSpace: 'pre-wrap' }}
+        className="overflow-auto p-3 mb-3 border rounded bg-gray-800 text-white"
+        style={{ height: '200px', whiteSpace: 'pre-wrap' }}
       >
         {targetText.split('').map((char, idx) => {
           let className = '';
@@ -130,6 +130,7 @@ function BanglaTypingPractice() {
         className="w-full p-2 mb-3 border rounded bg-gray-800 text-white"
         rows={3}
         placeholder="Start typing here..."
+        style={{ height: "100px" }} // 👈 fixed height
       />
 
       <div className="flex flex-wrap justify-between text-sm mb-3">
