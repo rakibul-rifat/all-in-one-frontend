@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { db } from '../firebase';
+import {
+  collection,
+  getDocs
+} from 'firebase/firestore';
+
 import { motion } from 'framer-motion';
 import HomeBtn from './HomeBtn';
+
+const SENTENCES_REF = collection(db, "sentences");
 
 function BanglaTypingPractice() {
   const [targetText, setTargetText] = useState('');
@@ -11,12 +19,21 @@ function BanglaTypingPractice() {
   const [timeLimit, setTimeLimit] = useState(5); // default 5 minutes
   const totalSeconds = timeLimit * 60;
 
-  // Fetch a random Bangla sentence from API
+  // Fetch a random Bangla sentence from Firestore
   const fetchRandomSentence = async () => {
     try {
-      const response = await fetch('https://blog-backend-production-1a24.up.railway.app/api/sentences/random'); // 🔁 Replace with actual URL
-      const data = await response.json();
-      setTargetText(data.text);
+      const snapshot = await getDocs(SENTENCES_REF);
+      const sentences = [];
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        if (data.text) sentences.push(data.text);
+      });
+      if (sentences.length > 0) {
+        const randomIndex = Math.floor(Math.random() * sentences.length);
+        setTargetText(sentences[randomIndex]);
+      } else {
+        setTargetText('আমি বাংলায় গান গাই।'); // fallback
+      }
     } catch (error) {
       console.error('Failed to fetch sentence:', error);
       setTargetText('আমি বাংলায় গান গাই।'); // fallback
@@ -130,7 +147,7 @@ function BanglaTypingPractice() {
         className="w-full p-2 mb-3 border rounded bg-gray-800 text-white"
         rows={3}
         placeholder="Start typing here..."
-        style={{ height: "100px" }} // 👈 fixed height
+        style={{ height: "100px" }}
       />
 
       <div className="flex flex-wrap justify-between text-sm mb-3">

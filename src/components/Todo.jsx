@@ -1,9 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { db } from '../firebase'; // adjust path if needed
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  Timestamp,
+  orderBy,
+  query,
+} from 'firebase/firestore';
 import { motion } from 'framer-motion';
 import HomeBtn from './HomeBtn';
 
-
+// 👇 Reusable collection reference
+const TODOS_REF = collection(db, "todos");
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -13,38 +25,42 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('https://blog-backend-production-1a24.up.railway.app/api/todos')
-      .then(res => setTodos(res.data))
-      .finally(() => setLoading(false));
+    const q = query(TODOS_REF, orderBy("created", "desc"));
+    const unsub = onSnapshot(q, (snapshot) => {
+      let list = [];
+      snapshot.forEach(doc => list.push({ id: doc.id, ...doc.data() }));
+      setTodos(list);
+      setLoading(false);
+    });
+    return () => unsub();
   }, []);
 
-  const addTodo = () => {
+  const addTodo = async () => {
     if (!text.trim()) return;
-    const payload = { text, color };
-
     if (editId) {
-      axios.put(`https://blog-backend-production-1a24.up.railway.app/api/todos/${editId}`, payload).then(res => {
-        setTodos(todos.map(todo => todo._id === editId ? res.data : todo));
-        resetForm();
-      });
+      await updateDoc(doc(db, "todos", editId), { text, color });
+      setTodos(todos.map(todo => todo.id === editId ? { ...todo, text, color } : todo));
+      resetForm();
     } else {
-      axios.post('https://blog-backend-production-1a24.up.railway.app/api/todos', payload).then(res => {
-        setTodos([res.data, ...todos]);
-        resetForm();
+      await addDoc(TODOS_REF, {
+        text,
+        color,
+        created: Timestamp.now(),
+        updatedAt: Timestamp.now(),
       });
+      resetForm();
     }
   };
 
-  const deleteTodo = id => {
-    axios.delete(`https://blog-backend-production-1a24.up.railway.app/api/todos/${id}`).then(() => {
-      setTodos(todos.filter(todo => todo._id !== id));
-    });
+  const deleteTodo = async id => {
+    await deleteDoc(doc(db, "todos", id));
+    setTodos(todos.filter(todo => todo.id !== id));
   };
 
   const editTodo = todo => {
     setText(todo.text);
     setColor(todo.color || '#36454F');
-    setEditId(todo._id);
+    setEditId(todo.id);
   };
 
   const resetForm = () => {
@@ -67,10 +83,9 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900  pt-5 pb-5">
-      <div className="max-w-xl mx-auto p-2 bg-gray-900 rounded-xl shadow p- text-gray-400">
+    <div className="min-h-screen bg-gray-900 pt-5 pb-5">
+      <div className="max-w-xl mx-auto p-2 bg-gray-900 rounded-xl shadow text-gray-400">
         <h1 className="text-2xl font-bold mb-4 text-center">Todo App</h1>
-        
         <div className="flex flex-col sm:flex-row gap-2 mb-4">
           <input
             value={text}
@@ -95,7 +110,7 @@ function App() {
         <ul>
           {todos.map(todo => (
             <motion.li
-              key={todo._id}
+              key={todo.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
@@ -105,7 +120,7 @@ function App() {
               <div className="flex-1 overflow-wrap break-words">
                 <p className="font-medium break-words">{todo.text}</p>
                 <p className="text-xs text-gray-300 mt-1">
-                  Last updated: {new Date(todo.updatedAt).toLocaleString()}
+                  Last updated: {todo.updatedAt ? new Date(todo.updatedAt.seconds * 1000).toLocaleString() : ""}
                 </p>
               </div>
               <div className="flex gap-2 mt-2 sm:mt-0 sm:ml-2">
@@ -116,7 +131,7 @@ function App() {
                   Edit
                 </button>
                 <button
-                  onClick={() => deleteTodo(todo._id)}
+                  onClick={() => deleteTodo(todo.id)}
                   className="text-sm bg-red-500 text-white px-2 py-1 rounded"
                 >
                   Delete
@@ -126,9 +141,7 @@ function App() {
           ))}
         </ul>
       </div>
-
-  
-<HomeBtn />
+      <HomeBtn />
     </div>
   );
 }

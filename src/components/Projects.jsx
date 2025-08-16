@@ -8,6 +8,7 @@ const projectList = [
   { name: "Bangla Typing Practice", path: "/BanglaTypingPractice" },
   { name: "BlogPage", path: "/BlogPage" },
   { name: "Bank Deposit Profit Calculator", path: "/Calculator" },
+  { name: "TodoApp", path: "/TodoApp" },
   // { name: "ImageSearch", path: "/ImageSearch" },
 ];
 

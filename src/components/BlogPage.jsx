@@ -1,103 +1,95 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { db } from "../firebase";
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  Timestamp,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import HomeBtn from "./HomeBtn";
 
-
+const BLOGS_REF = collection(db, "blogs");
+const ADMIN_EMAIL = "abc@gmail.com";
+const ADMIN_PASS = "123";
 
 export default function BlogPage() {
   const [blogs, setBlogs] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [image, setImage] = useState(null);
-  const [editingId, setEditingId] = useState(null);
-  const [auth, setAuth] = useState({ email: "", password: "", token: "" });
-  const [expanded, setExpanded] = useState({}); // Track expanded blogs
+  const [imageUrl, setImageUrl] = useState(""); // now only for pasted link
+  const [editingId, setEditingId] = useState("");
+  const [expanded, setExpanded] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
+  const [admin, setAdmin] = useState(false);
+  const [adminEmail, setAdminEmail] = useState("");
+  const [adminPass, setAdminPass] = useState("");
   const postsPerPage = 5;
 
-  // Fetch blogs
-  const fetchBlogs = async () => {
-    const res = await axios.get("https://blog-backend-production-1a24.up.railway.app/api/blogs");
-    setBlogs(res.data);
-  };
-
+  // Fetch blogs in real-time
   useEffect(() => {
-    fetchBlogs();
+    const q = query(BLOGS_REF, orderBy("created", "desc"));
+    const unsub = onSnapshot(q, (snapshot) => {
+      let list = [];
+      snapshot.forEach((doc) => list.push({ id: doc.id, ...doc.data() }));
+      setBlogs(list);
+    });
+    return () => unsub();
   }, []);
 
-  // Login
-  const handleLogin = async () => {
-    try {
-      const res = await axios.post("https://blog-backend-production-1a24.up.railway.app/api/auth/login", {
-        email: auth.email,
-        password: auth.password,
-      });
-      localStorage.setItem("token", res.data.token);
-      setAuth({ ...auth, token: res.data.token });
-      alert("✅ Logged in");
-    } catch (err) {
-      alert("❌ Login failed");
+  // Admin login (email & password check)
+  const handleAdminLogin = () => {
+    if (adminEmail === ADMIN_EMAIL && adminPass === ADMIN_PASS) {
+      setAdmin(true);
+      setAdminEmail("");
+      setAdminPass("");
+    } else {
+      alert("Wrong email or password!");
     }
   };
 
-  // Create or update blog
+  // Add or update blog
   const handleSubmit = async () => {
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("content", content);
-    if (image) formData.append("image", image);
+    if (!title.trim() || !content.trim()) return;
 
-    const config = {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    };
-
-    try {
-      if (editingId) {
-        await axios.put(
-          `https://blog-backend-production-1a24.up.railway.app/blogs/${editingId}`,
-          formData,
-          config
-        );
-        alert("✏️ Blog updated");
-      } else {
-        await axios.post("https://blog-backend-production-1a24.up.railway.app/api/blogs", formData, config);
-        alert("✅ Blog created");
-      }
-
-      setTitle("");
-      setContent("");
-      setImage(null);
+    let uploadedImageUrl = imageUrl;
+    if (editingId) {
+      await updateDoc(doc(db, "blogs", editingId), {
+        title,
+        content,
+        image: uploadedImageUrl || "",
+      });
       setEditingId(null);
-      fetchBlogs();
-    } catch (err) {
-      alert("❌ Action failed");
+    } else {
+      await addDoc(BLOGS_REF, {
+        title,
+        content,
+        image: uploadedImageUrl || "",
+        created: Timestamp.now(),
+      });
     }
+    setTitle("");
+    setContent("");
+    setImageUrl("");
   };
 
   // Edit blog
   const handleEdit = (blog) => {
     setTitle(blog.title);
     setContent(blog.content);
-    setEditingId(blog._id);
+    setImageUrl(blog.image || "");
+    setEditingId(blog.id);
   };
 
   // Delete blog
   const handleDelete = async (id) => {
-    try {
-      await axios.delete(`https://blog-backend-production-1a24.up.railway.app/api/blogs/${id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      alert("🗑️ Blog deleted");
-      fetchBlogs();
-    } catch (err) {
-      alert("❌ Delete failed");
-    }
+    await deleteDoc(doc(db, "blogs", id));
   };
 
   // Pagination logic
@@ -108,32 +100,32 @@ export default function BlogPage() {
 
   // See more logic
   const getPreview = (html) => {
-    // Remove HTML tags and limit to ~200 chars (about 3 lines)
     const text = html.replace(/<[^>]+>/g, "");
     return text.length > 200 ? text.slice(0, 200) + "..." : text;
   };
 
   return (
     <div className="max-w-4xl mx-auto p-4 space-y-6">
-
-      {/* Login */}
-      {!auth.token && (
-        <div className="bg-gray-900 text-gray-400 p-4 rounded space-y-2">
-          <h2 className="font-semibold text-lg">Login</h2>
+      {/* Admin Login */}
+      {!admin && (
+        <div className="bg-gray-900 text-gray-400 p-4 rounded space-y-2 mb-4">
+          <h2 className="font-semibold text-lg">Admin Login</h2>
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Enter admin email"
             className="p-2 border w-full"
-            onChange={(e) => setAuth({ ...auth, email: e.target.value })}
+            value={adminEmail}
+            onChange={(e) => setAdminEmail(e.target.value)}
           />
           <input
             type="password"
-            placeholder="Password"
-            className="p-2 border w-full"
-            onChange={(e) => setAuth({ ...auth, password: e.target.value })}
+            placeholder="Enter admin password"
+            className="p-2 border w-full mt-2"
+            value={adminPass}
+            onChange={(e) => setAdminPass(e.target.value)}
           />
           <button
-            onClick={handleLogin}
+            onClick={handleAdminLogin}
             className="bg-blue-600 text-white px-4 py-2 mt-2"
           >
             Login
@@ -142,7 +134,7 @@ export default function BlogPage() {
       )}
 
       {/* Blog Form */}
-      {auth.token && (
+      {admin && (
         <div className="bg-gray-200 shadow p-2 rounded space-y-2">
           <h2 className="font-semibold text-lg">
             {editingId ? "✏️ Edit Blog" : "➕ Create New Blog"}
@@ -156,10 +148,20 @@ export default function BlogPage() {
           />
           <ReactQuill value={content} onChange={setContent} className="mb-2" />
           <input
-            type="file"
-            onChange={(e) => setImage(e.target.files[0])}
-            className="mb-2"
+            type="text"
+            placeholder="Paste image link here (https://...)"
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+            className="p-2 border w-full mb-2"
           />
+          {imageUrl && (
+            <img
+              src={imageUrl}
+              alt="Blog"
+              className="w-full aspect-video rounded mb-2"
+              onError={(e) => { e.target.style.display = 'none'; }}
+            />
+          )}
           <button
             onClick={handleSubmit}
             className="bg-green-600 text-white px-4 py-2"
@@ -170,26 +172,29 @@ export default function BlogPage() {
       )}
 
       {/* Blog List */}
-      <div className="grid bg-gray-900  grid-cols-1 gap-6">
+      <div className="grid bg-gray-900 grid-cols-1 gap-6">
         {currentBlogs.map((blog) => (
           <div
-            key={blog._id}
+            key={blog.id}
             className="border p-4 rounded shadow space-y-2 bg-gray-900"
           >
             <h3 className="text-xl text-gray-200 font-bold">{blog.title}</h3>
-            <img
-              src={blog.image ? `https://blog-backend-production-1a24.up.railway.app/uploads/${blog.image}` : ""}
-              alt=""
-              className="w-full aspect-video rounded"
-            />
+            {blog.image && (
+              <img
+                src={blog.image}
+                alt=""
+                className="w-full aspect-video rounded"
+                onError={(e) => { e.target.style.display = 'none'; }}
+              />
+            )}
             <div className="text-gray-200">
-              {expanded[blog._id] ? (
+              {expanded[blog.id] ? (
                 <>
                   <div dangerouslySetInnerHTML={{ __html: blog.content }} />
                   <button
                     className="text-blue-600 underline mt-2"
                     onClick={() =>
-                      setExpanded((prev) => ({ ...prev, [blog._id]: false }))
+                      setExpanded((prev) => ({ ...prev, [blog.id]: false }))
                     }
                   >
                     See less
@@ -202,7 +207,7 @@ export default function BlogPage() {
                     <button
                       className="text-blue-600 underline mt-2"
                       onClick={() =>
-                        setExpanded((prev) => ({ ...prev, [blog._id]: true }))
+                        setExpanded((prev) => ({ ...prev, [blog.id]: true }))
                       }
                     >
                       See more
@@ -211,8 +216,7 @@ export default function BlogPage() {
                 </>
               )}
             </div>
-
-            {auth.token && (
+            {admin && (
               <div className="flex space-x-4 mt-2">
                 <button
                   onClick={() => handleEdit(blog)}
@@ -221,7 +225,7 @@ export default function BlogPage() {
                   Edit
                 </button>
                 <button
-                  onClick={() => handleDelete(blog._id)}
+                  onClick={() => handleDelete(blog.id)}
                   className="text-red-600"
                 >
                   Delete
