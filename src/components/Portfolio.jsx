@@ -19,7 +19,7 @@ import {
   SiMongodb,
 } from "react-icons/si";
 import gsap from "gsap";
-import WeatherWidget from "./WeatherWidget";
+
 
 
 const Portfolio = () => {
@@ -59,7 +59,7 @@ const skills = [
   { name: "Tailwind", icon: <SiTailwindcss className="text-cyan-400" /> },
   { name: "Bootstrap", icon: <FaBootstrap className="text-purple-600" /> },
   { name: "Framer Motion", icon: <SiFramer className="text-pink-500" /> },
-  { name: "Animate.css", icon: <SiCss3 className="text-indigo-500" /> },
+  { name: "Animate .css", icon: <SiCss3 className="text-indigo-500" /> },
   { name: "Netlify", icon: <SiNetlify className="text-green-400" /> },
   { name: "Vercel", icon: <SiVercel className="text-white" /> },
   { name: "Mongodb", icon: <SiMongodb className="text-green-400" /> },
@@ -77,14 +77,14 @@ const skills = [
     <>
 
       {/* Main Content */}
-      <div className="max-w-4xl mx-auto p-6 shadow-xl rounded-xl mt-10 bg-black">
+      <div className="max-w-4xl mx-auto p-1 shadow-xl rounded-xl mt-10 bg-black">
         
         {/* Profile Section */}
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-6 mt-8">
           <img
             src="https://avatars.githubusercontent.com/u/192508513?v=4"
             alt="Profile"
-            className="w-32 h-32 rounded-full object-cover border-4 border-gray-500"
+            className="w-32 h-32 rounded-full object-cover border-4 border-gray-500 "
           />
           <div>
             <h1 className="text-xl text-gray-500 font-bold">Rakibul Islam</h1>
@@ -103,11 +103,12 @@ const skills = [
                 </a>
                 
               ))}
-               {/* <WeatherWidget /> */}
+            
             </div>
           </div>
-          
         </div>
+
+  
 
         {/* Skills Section */}
         <div className="mt-8">
@@ -115,7 +116,7 @@ const skills = [
   {skills.map((skill) => (
     <div
       key={skill.name}
-      className="
+      className="max-w-4xl mx-auto
         flex  flex-col items-center 
         bg-gray-900  p-4 py-5 rounded-lg 
         hover:shadow-lg transition

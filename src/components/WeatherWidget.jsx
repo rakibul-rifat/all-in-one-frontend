@@ -19,15 +19,18 @@ export default function WeatherWidget() {
       .catch((err) => console.error(err));
   }, []);
 
-  // Simple live clock
+  // 12-hour format clock with AM/PM
   const [clock, setClock] = useState("");
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
       setClock(
-        now
-          .toLocaleTimeString("en-GB", { hour12: false })
-          .replace(/:\d{2}$/, "") // HH:mm:ss
+        now.toLocaleTimeString("en-US", {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        })
       );
     }, 1000);
     return () => clearInterval(interval);
@@ -35,7 +38,7 @@ export default function WeatherWidget() {
 
   return (
     <motion.div
-      className="border-2 border-purple-700 rounded-xl p-4 bg-black text-gray-500 w-56 text-center shadow-2xl"
+      className="border-2 border-purple-700 rounded-xl p-4 bg-black max-w-4xl mx-auto p-4 shadow-xl rounded-xl mb-10 text-gray-500 text-center shadow-2xl"
       style={{
         perspective: "800px",
       }}
