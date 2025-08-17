@@ -21,9 +21,10 @@ const ADMIN_PASS = "123";
 
 export default function BlogPage() {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true); // <-- loading state
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [imageUrl, setImageUrl] = useState(""); // now only for pasted link
+  const [imageUrl, setImageUrl] = useState("");
   const [editingId, setEditingId] = useState("");
   const [expanded, setExpanded] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,11 +35,13 @@ export default function BlogPage() {
 
   // Fetch blogs in real-time
   useEffect(() => {
+    setLoading(true);
     const q = query(BLOGS_REF, orderBy("created", "desc"));
     const unsub = onSnapshot(q, (snapshot) => {
       let list = [];
       snapshot.forEach((doc) => list.push({ id: doc.id, ...doc.data() }));
       setBlogs(list);
+      setLoading(false); // <-- stop loading when data arrives
     });
     return () => unsub();
   }, []);
@@ -109,7 +112,7 @@ export default function BlogPage() {
       {/* Admin Login */}
       {!admin && (
         <div className="bg-gray-900 text-gray-400 p-4 rounded space-y-2 mb-4">
-          <h2 className="font-semibold text-lg">Admin Login</h2>
+          <h2 className="font-semibold text-lg mt-5">Admin Login</h2>
           <input
             type="email"
             placeholder="Enter admin email"
@@ -173,67 +176,77 @@ export default function BlogPage() {
 
       {/* Blog List */}
       <div className="grid bg-gray-900 grid-cols-1 gap-6">
-        {currentBlogs.map((blog) => (
-          <div
-            key={blog.id}
-            className="border p-4 rounded shadow space-y-2 bg-gray-900"
-          >
-            <h3 className="text-xl text-gray-200 font-bold">{blog.title}</h3>
-            {blog.image && (
-              <img
-                src={blog.image}
-                alt=""
-                className="w-full aspect-video rounded"
-                onError={(e) => { e.target.style.display = 'none'; }}
-              />
-            )}
-            <div className="text-gray-200">
-              {expanded[blog.id] ? (
-                <>
-                  <div dangerouslySetInnerHTML={{ __html: blog.content }} />
-                  <button
-                    className="text-blue-600 underline mt-2"
-                    onClick={() =>
-                      setExpanded((prev) => ({ ...prev, [blog.id]: false }))
-                    }
-                  >
-                    See less
-                  </button>
-                </>
-              ) : (
-                <>
-                  <div>{getPreview(blog.content)}</div>
-                  {blog.content.replace(/<[^>]+>/g, "").length > 200 && (
+        {loading ? (
+          <div className="flex justify-center items-center py-10">
+            <svg className="animate-spin h-8 w-8 text-blue-400 mr-2" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"/>
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
+            </svg>
+            <span className="text-blue-400 text-lg">Loading blog posts...</span>
+          </div>
+        ) : (
+          currentBlogs.map((blog) => (
+            <div
+              key={blog.id}
+              className="border p-4 rounded shadow space-y-2 bg-gray-900"
+            >
+              <h3 className="text-xl text-gray-200 font-bold">{blog.title}</h3>
+              {blog.image && (
+                <img
+                  src={blog.image}
+                  alt=""
+                  className="w-full aspect-video rounded"
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                />
+              )}
+              <div className="text-gray-200">
+                {expanded[blog.id] ? (
+                  <>
+                    <div dangerouslySetInnerHTML={{ __html: blog.content }} />
                     <button
                       className="text-blue-600 underline mt-2"
                       onClick={() =>
-                        setExpanded((prev) => ({ ...prev, [blog.id]: true }))
+                        setExpanded((prev) => ({ ...prev, [blog.id]: false }))
                       }
                     >
-                      See more
+                      See less
                     </button>
-                  )}
-                </>
+                  </>
+                ) : (
+                  <>
+                    <div>{getPreview(blog.content)}</div>
+                    {blog.content.replace(/<[^>]+>/g, "").length > 200 && (
+                      <button
+                        className="text-blue-600 underline mt-2"
+                        onClick={() =>
+                          setExpanded((prev) => ({ ...prev, [blog.id]: true }))
+                        }
+                      >
+                        See more
+                      </button>
+                    )}
+                  </>
+                )}
+              </div>
+              {admin && (
+                <div className="flex space-x-4 mt-2">
+                  <button
+                    onClick={() => handleEdit(blog)}
+                    className="text-blue-600"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(blog.id)}
+                    className="text-red-600"
+                  >
+                    Delete
+                  </button>
+                </div>
               )}
             </div>
-            {admin && (
-              <div className="flex space-x-4 mt-2">
-                <button
-                  onClick={() => handleEdit(blog)}
-                  className="text-blue-600"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDelete(blog.id)}
-                  className="text-red-600"
-                >
-                  Delete
-                </button>
-              </div>
-            )}
-          </div>
-        ))}
+          ))
+        )}
       </div>
 
       {/* Pagination */}

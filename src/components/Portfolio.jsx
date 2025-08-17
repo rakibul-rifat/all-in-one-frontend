@@ -15,8 +15,11 @@ import {
   SiNetlify,
   SiVercel,
   SiCss3,
+  SiFirebase,
+  SiMongodb,
 } from "react-icons/si";
 import gsap from "gsap";
+import WeatherWidget from "./WeatherWidget";
 
 
 const Portfolio = () => {
@@ -47,18 +50,22 @@ const Portfolio = () => {
 }, []);
 
 
-  const skills = [
-    { name: "React", icon: <FaReact className="text-sky-500" /> },
-    { name: "JavaScript", icon: <FaJs className="text-yellow-400" /> },
-    { name: "HTML5", icon: <FaHtml5 className="text-orange-500" /> },
-    { name: "CSS3", icon: <FaCss3Alt className="text-blue-500" /> },
-    { name: "Tailwind", icon: <SiTailwindcss className="text-cyan-400" /> },
-    { name: "Bootstrap", icon: <FaBootstrap className="text-purple-600" /> },
-    { name: "Framer Motion", icon: <SiFramer className="text-pink-500" /> },
-    { name: "Animate. css", icon: <SiCss3 className="text-indigo-500" /> },
-    { name: "Netlify", icon: <SiNetlify className="text-green-400" /> },
-    { name: "Vercel", icon: <SiVercel className="text-black" /> },
-  ];
+
+const skills = [
+  { name: "React", icon: <FaReact className="text-sky-500" /> },
+  { name: "JavaScript", icon: <FaJs className="text-yellow-400" /> },
+  { name: "HTML5", icon: <FaHtml5 className="text-orange-500" /> },
+  { name: "CSS3", icon: <FaCss3Alt className="text-blue-500" /> },
+  { name: "Tailwind", icon: <SiTailwindcss className="text-cyan-400" /> },
+  { name: "Bootstrap", icon: <FaBootstrap className="text-purple-600" /> },
+  { name: "Framer Motion", icon: <SiFramer className="text-pink-500" /> },
+  { name: "Animate.css", icon: <SiCss3 className="text-indigo-500" /> },
+  { name: "Netlify", icon: <SiNetlify className="text-green-400" /> },
+  { name: "Vercel", icon: <SiVercel className="text-white" /> },
+  { name: "Mongodb", icon: <SiMongodb className="text-green-400" /> },
+  { name: "Firebase", icon: <SiFirebase className="text-orange-400" /> }, // ✅ Firebase Added
+];
+
 
   const socials = [
     { name: "GitHub", icon: <FaGithub />, url: "https://github.com/Rakibul-Rifat" },
@@ -94,9 +101,12 @@ const Portfolio = () => {
                 >
                   {social.icon}
                 </a>
+                
               ))}
+               {/* <WeatherWidget /> */}
             </div>
           </div>
+          
         </div>
 
         {/* Skills Section */}
@@ -140,6 +150,7 @@ const Portfolio = () => {
         />
       </div>
     </div>
+   
       </div>
     </>
   );

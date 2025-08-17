@@ -11,7 +11,7 @@ import Blog from './pages/Blog.jsx';
 import BlogPage from './components/BlogPage.jsx';
 import Calculator from './components/Calculator.jsx';
 import HomeBtn from './components/HomeBtn.jsx';
-import TodoApp from './TodoApp.jsx';
+import WeatherWidget from './components/WeatherWidget.jsx';
 // import ImageSearch from './components/ImageSearch.jsx';
 
 function App() {
@@ -26,11 +26,10 @@ function App() {
           <Route path="/About" element={<About />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Blog" element={<Blog />} />
-           <Route path="/BlogPage" element={<BlogPage />} />
-           <Route path="/Calculator" element={<Calculator />} />
-              <Route path="/HomeBtn" element={<HomeBtn />} />
-               <Route path="/TodoApp" element={<TodoApp />} />
-           {/* <Route path="/ImageSearch" element={<ImageSearch />} /> */}
+          <Route path="/BlogPage" element={<BlogPage />} />
+          <Route path="/Calculator" element={<Calculator />} />
+          <Route path="/HomeBtn" element={<HomeBtn />} />
+          <Route path="/" element={<WeatherWidget />} />
          
         </Routes>
       
