@@ -33,7 +33,7 @@ export default function Contact() {
   const whatsappMessage = `Hello, I want to get in touch with you!`;
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
+    <div className="max-w-4xl mx-auto px-1 mt-5 pt-5 ">
       <Navbar />
       <h1 className="text-3xl sm:text-4xl font-bold mb-8 mt-5 text-center text-white">
         Contact Me

@@ -80,7 +80,7 @@ const skills = [
       <div className="max-w-4xl mx-auto p-1 shadow-xl rounded-xl mt-10 bg-black">
         
         {/* Profile Section */}
-        <div className="flex items-center space-x-6 mt-8">
+        <div className="flex items-center sm:bg-black bg-gray-900 p-4 rounded-lg space-x-6 mt-8">
           <img
             src="https://avatars.githubusercontent.com/u/192508513?v=4"
             alt="Profile"
@@ -111,7 +111,7 @@ const skills = [
   
 
         {/* Skills Section */}
-        <div className="mt-8">
+        <div className="mt-5">
         <div className="flex flex-wrap gap-4  justify-center">
   {skills.map((skill) => (
     <div
@@ -134,7 +134,7 @@ const skills = [
   ))}
 </div>
         </div>
-        <div className="flex mt-10 flex-col items-center justify-center gap-6 p-6 bg-gray-900 rounded-2xl shadow-lg">
+        <div className="flex mt-5 flex-col items-center justify-center gap-6 p-6 bg-gray-900 rounded-2xl shadow-lg">
       <h2 className="text-2xl md:text-3xl font-bold text-white text-center">
         📈 GitHub Stats
       </h2>

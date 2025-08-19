@@ -61,9 +61,9 @@ export default function About() {
         {headingLetters}
       </h1>
 
-      <section className="mb-12 p-5 max-w-3xl mx-auto">
+      <section className="mb-12 p-2 max-w-3xl mx-auto">
         <motion.p
-          className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-200 text-center"
+          className="text-base sm:text-sm md:text-xl leading-relaxed text-gray-200 "
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
@@ -74,7 +74,7 @@ export default function About() {
         </motion.p>
 
         <motion.p
-          className="mt-6 text-base sm:text-lg md:text-xl leading-relaxed text-gray-200 text-center"
+          className="mt-6 text-base sm:text-lg md:text-xl leading-relaxed text-gray-200 "
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
@@ -96,7 +96,7 @@ export default function About() {
 
       {/* Skills Grid */}
       <motion.div
-        className="flex flex-wrap gap-4 sm:gap-6 md:gap-8 justify-center"
+        className="flex flex-wrap gap-6 sm:gap-6 md:gap-8 justify-center"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
