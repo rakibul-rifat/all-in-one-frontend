@@ -2,7 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Todo from './components/Todo';
-import Home from './components/Home';
+import Home from './pages/Home.jsx';
 import BanglaTypingPractice from "./components/BanglaTypingPractice.jsx"
 import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx';

@@ -27,9 +27,13 @@ const Projects = () => {
         {projectList.map((project, index) => (
           <motion.div
             key={project.name}
-            initial={{ opacity: 0, x: index % 2 === 0 ? -80 : 80 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+            initial={{ opacity: 0, x: -100 }}   // start hidden, slide from left
+            animate={{ opacity: 1, x: 0 }}      // fade in + move to normal position
+            transition={{
+              duration: 0.6,
+              ease: "easeOut",
+              delay: index * 0.1,              // stagger animation by index
+            }}
           >
             <Link
               to={project.path}

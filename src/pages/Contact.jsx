@@ -127,7 +127,7 @@ export default function Contact() {
   )}`}
   target="_blank"
   rel="noopener noreferrer"
-  className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg p-4 flex items-center justify-center transition-all duration-300 z-50"
+  className="fixed bottom-6 mb-10 right-6 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg p-4 flex items-center justify-center transition-all duration-300 z-50"
   initial={{ opacity: 0, y: 80, scale: 0.8 }}
   animate={{ opacity: 1, y: 0, scale: 1 }}
   transition={{ duration: 0.5, delay: 0.3, type: "spring" }}

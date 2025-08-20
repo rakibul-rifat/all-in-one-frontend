@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import Navbar from "../components/Navbar";
+import BottomNav from "../components/BottomNav";
 import { motion } from "framer-motion";
 import gsap from "gsap";
-import BottomNav from "../components/BottomNav";
 
 const skills = [
   { name: "HTML5", icon: <i className="fab fa-html5 text-orange-400 text-3xl md:text-4xl"></i> },
@@ -24,97 +24,84 @@ const skills = [
 
 export default function About() {
   const headingRef = useRef(null);
+  const skillsRef = useRef([]);
 
   useEffect(() => {
-    if (headingRef.current) {
-      gsap.fromTo(
-        headingRef.current.children,
-        { y: 60, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          stagger: 0.08,
-          duration: 0.8,
-          ease: "power3.out",
-        }
-      );
-    }
+    // Animate heading with GSAP
+    gsap.fromTo(
+      headingRef.current,
+      { y: -60, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
+    );
+
+    // Animate skills grid with GSAP stagger
+    gsap.fromTo(
+      skillsRef.current,
+      { scale: 0, opacity: 0, y: 40 },
+      {
+        scale: 1,
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "back.out(1.7)",
+        stagger: 0.15,
+        delay: 0.5,
+      }
+    );
   }, []);
 
-  // Split heading into animated letters
   const heading = "About Me";
-  const headingLetters = heading.split("").map((char, i) => (
-    <span key={i} style={{ display: "inline-block" }}>
-      {char === " " ? "\u00A0" : char}
-    </span>
-  ));
 
   return (
-    <div className="min-h-screen bg-black px-2 sm:px-4 mb-10 pb-10 ">
+    <div className="min-h-screen bg-black px-2 sm:px-4 mb-10 mt-10 pt-10 pb-10">
       <Navbar />
 
-      {/* Animated Heading with GSAP */}
+      {/* Animated Heading */}
       <h1
         ref={headingRef}
         className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
         style={{ letterSpacing: "0.08em" }}
       >
-        {headingLetters}
+        {heading}
       </h1>
 
-      <section className="mb-12 p-2 max-w-4xl mx-auto">
-        <motion.p
-          className="text-base sm:text-sm md:text-xl leading-relaxed text-gray-200 "
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-        >
-         I'm a frontend developer who loves building fast, beautiful, and easy-to-use websites. My focus is on creating the parts of a website that people see and interact with. I use React to build powerful features and Tailwind CSS to make everything look great on any screen.
-        </motion.p>
+      {/* About Section */}
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        className="mb-12 p-2 max-w-4xl mx-auto"
+      >
+        <p className="text-base sm:text-sm md:text-xl leading-relaxed text-gray-200">
+         I am a frontend-focused developer passionate about creating visually appealing, fast, and user-friendly web applications. I specialize in React, JavaScript, and Tailwind CSS, building responsive interfaces that work seamlessly across devices. I enjoy blending creativity with functionality, using Framer Motion and GSAP to add smooth, modern animations that enhance user experience.
+        </p>
 
-        <motion.p
-          className="mt-6 text-base sm:text-lg md:text-xl leading-relaxed text-gray-200 "
-          initial={{ opacity: 0, x: -100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-        >
-         To make websites feel modern and engaging, I add smooth animations with tools like Framer Motion. I also know how to make websites fully functional by connecting them to a backend. I often use Firebase to handle logins, store data, and manage files.
-
-I'm a proactive problem-solver and a strong team player who thrives in collaborative environments. I use Git for version control and Figma to turn design mockups into real code. I'm passionate about learning new technologies and am always eager to take on new challenges to build better web experiences.</motion.p>
-      </section>
+        <p className="mt-6 text-base sm:text-lg md:text-xl leading-relaxed text-gray-200">
+       While my core strength is frontend development, I also work with backend tools like Firebase and MongoDB for authentication, data handling, and real-time features. I’m a quick learner, always exploring new technologies to craft clean, functional, and engaging digital experiences that leave a lasting impression.
+        </p>
+      </motion.section>
 
       {/* Skills Heading */}
-      <motion.h2
-        className="text-2xl   sm:text-3xl font-bold mb-8 text-center text-purple-300"
-        initial={{ opacity: 0, x: 100 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1 }}
-      >
+      <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center text-purple-300">
         My Technologies
-      </motion.h2>
+      </h2>
 
       {/* Skills Grid */}
-      <motion.div
-        className="flex max-w-4xl mx-auto flex-wrap gap-6 sm:gap-6 md:gap-8 justify-center"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-      >
-        {skills.map((skill, idx) => (
-          <motion.div
+      <div className="flex max-w-4xl mx-auto flex-wrap gap-4  sm:gap-6 md:gap-8 justify-center">
+        {skills.map((skill, i) => (
+          <div
             key={skill.name}
-            className="flex flex-col items-center bg-gray-900 px-4 py-4 sm:px-6 sm:py-6 rounded-xl shadow-lg hover:shadow-2xl transition-all w-24 sm:w-28 md:w-32 mb-4 border border-purple-700"
-            whileHover={{ scale: 1.13, rotate: 6 }}
-            whileTap={{ scale: 0.97 }}
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: idx * 0.05 }}
+            ref={(el) => (skillsRef.current[i] = el)}
+            className="flex flex-col items-center bg-gray-900 px-8 py-4 sm:px-6 sm:py-6 rounded-xl shadow-lg hover:shadow-2xl transition-all w-24 sm:w-28 md:w-32 mb-4 border border-purple-700"
           >
             <div>{skill.icon}</div>
-            <span className="mt-2 sm:mt-4 text-xs sm:text-sm md:text-base text-gray-200 font-semibold text-center">{skill.name}</span>
-          </motion.div>
+            <span className="mt-2 sm:mt-4 text-xs sm:text-sm md:text-base text-gray-200 font-semibold text-center">
+              {skill.name}
+            </span>
+          </div>
         ))}
-      </motion.div>
+      </div>
+
       <BottomNav />
     </div>
   );

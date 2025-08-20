@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import gsap from "gsap";
-import Portfolio from "./Portfolio";
-import Project from "../pages/Project";
-import Navbar from "./Navbar";
-
-import BottomNav from "./BottomNav";
+import Portfolio from "../components/Portfolio";
+import Project from "./Project";
+import BottomNav from "../components/BottomNav";
 
 const Home = () => {
   useEffect(() => {
@@ -53,12 +51,8 @@ const Home = () => {
         </p>
       </div>
       {/* Hero Section */}
-
-      <Navbar />
       <Portfolio />
-      
-      <Project/>
-    
+      <Project />
      <BottomNav />
     </>
   );
