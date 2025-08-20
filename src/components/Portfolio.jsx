@@ -19,6 +19,7 @@ import {
   SiMongodb,
 } from "react-icons/si";
 import gsap from "gsap";
+import WeatherWidget from "./WeatherWidget";
 
 
 
@@ -77,7 +78,7 @@ const skills = [
     <>
 
       {/* Main Content */}
-      <div className="max-w-4xl mx-auto p-1 shadow-xl rounded-xl mt-10 bg-black">
+      <div className="max-w-4xl mx-auto p-1 shadow-xl rounded-xl mt-7 bg-black">
         
         {/* Profile Section */}
         <div className="flex items-center sm:bg-black bg-gray-900 p-4 rounded-lg space-x-6 mt-8">
@@ -108,17 +109,17 @@ const skills = [
           </div>
         </div>
 
-  
+  <WeatherWidget />
 
         {/* Skills Section */}
         <div className="mt-5">
-        <div className="flex flex-wrap gap-4  justify-center">
+        <div className="flex flex-wrap gap-4  justify-center ">
   {skills.map((skill) => (
     <div
       key={skill.name}
       className="max-w-4xl mx-auto
         flex  flex-col items-center 
-        bg-gray-900  p-4 py-5 rounded-lg 
+          p-4 py-5 rounded-lg 
         hover:shadow-lg transition
         basis-[calc((100%/3)-1rem)]  /* 3 items per row minus gap */
         sm:basis-[calc((100%/4)-1rem)] /* 4 items per row on sm */
@@ -135,7 +136,7 @@ const skills = [
 </div>
         </div>
         <div className="flex mt-5 flex-col items-center justify-center gap-6 p-6 bg-gray-900 rounded-2xl shadow-lg">
-      <h2 className="text-2xl md:text-3xl font-bold text-white text-center">
+      <h2 className="text-2xl md:text-3xl font-bold text-gray-500 text-center">
         📈 GitHub Stats
       </h2>
       <div className="flex flex-col md:flex-row items-center justify-center gap-6">

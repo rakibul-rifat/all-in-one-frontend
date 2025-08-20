@@ -12,7 +12,7 @@ import {
   query,
 } from 'firebase/firestore';
 import { motion } from 'framer-motion';
-import HomeBtn from './HomeBtn';
+import BottomNav from './BottomNav';
 
 // 👇 Reusable collection reference
 const TODOS_REF = collection(db, "todos");
@@ -141,7 +141,7 @@ function App() {
           ))}
         </ul>
       </div>
-      <HomeBtn />
+     <BottomNav />
     </div>
   );
 }

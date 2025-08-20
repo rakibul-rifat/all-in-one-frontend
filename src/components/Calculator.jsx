@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import HomeBtn from "./HomeBtn";
+
+import BottomNav from "./BottomNav";
 
 export default function Calculator() {
   const [amount, setAmount] = useState(0);
@@ -104,7 +105,7 @@ export default function Calculator() {
           </div>
         )}
       </div>
-      <HomeBtn />
+      <BottomNav />
     </div>
   );
 }

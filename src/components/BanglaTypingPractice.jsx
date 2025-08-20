@@ -6,7 +6,8 @@ import {
 } from 'firebase/firestore';
 
 import { motion } from 'framer-motion';
-import HomeBtn from './HomeBtn';
+
+import BottomNav from './BottomNav';
 
 const SENTENCES_REF = collection(db, "sentences");
 
@@ -163,7 +164,7 @@ function BanglaTypingPractice() {
         {isFinished ? 'Restart' : 'Reset'}
       </button>
 
-      <HomeBtn />
+      <BottomNav />
     </motion.div>
   );
 }

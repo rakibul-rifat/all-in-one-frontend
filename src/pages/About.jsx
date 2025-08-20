@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Navbar from "../components/Navbar";
 import { motion } from "framer-motion";
 import gsap from "gsap";
+import BottomNav from "../components/BottomNav";
 
 const skills = [
   { name: "HTML5", icon: <i className="fab fa-html5 text-orange-400 text-3xl md:text-4xl"></i> },
@@ -49,7 +50,7 @@ export default function About() {
   ));
 
   return (
-    <div className="min-h-screen bg-black px-2 sm:px-4">
+    <div className="min-h-screen bg-black px-2 sm:px-4 mb-10 pb-10 ">
       <Navbar />
 
       {/* Animated Heading with GSAP */}
@@ -61,16 +62,14 @@ export default function About() {
         {headingLetters}
       </h1>
 
-      <section className="mb-12 p-2 max-w-3xl mx-auto">
+      <section className="mb-12 p-2 max-w-4xl mx-auto">
         <motion.p
           className="text-base sm:text-sm md:text-xl leading-relaxed text-gray-200 "
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
         >
-          Hi! I’m a passionate frontend web developer with experience building modern, responsive, and
-          user-friendly websites and web applications. I enjoy turning ideas into beautiful, functional
-          interfaces using the latest technologies.
+         I'm a frontend developer who loves building fast, beautiful, and easy-to-use websites. My focus is on creating the parts of a website that people see and interact with. I use React to build powerful features and Tailwind CSS to make everything look great on any screen.
         </motion.p>
 
         <motion.p
@@ -79,14 +78,14 @@ export default function About() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
         >
-          My main focus is creating smooth, performant user experiences with React, Tailwind CSS, and
-          JavaScript, along with solid knowledge of HTML5, CSS3, Node.js, MongoDB, and more. I’m constantly learning and growing my skillset to keep up with the fast-evolving frontend ecosystem.
-        </motion.p>
+         To make websites feel modern and engaging, I add smooth animations with tools like Framer Motion. I also know how to make websites fully functional by connecting them to a backend. I often use Firebase to handle logins, store data, and manage files.
+
+I'm a proactive problem-solver and a strong team player who thrives in collaborative environments. I use Git for version control and Figma to turn design mockups into real code. I'm passionate about learning new technologies and am always eager to take on new challenges to build better web experiences.</motion.p>
       </section>
 
       {/* Skills Heading */}
       <motion.h2
-        className="text-2xl sm:text-3xl font-bold mb-8 text-center text-purple-300"
+        className="text-2xl   sm:text-3xl font-bold mb-8 text-center text-purple-300"
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1 }}
@@ -96,7 +95,7 @@ export default function About() {
 
       {/* Skills Grid */}
       <motion.div
-        className="flex flex-wrap gap-6 sm:gap-6 md:gap-8 justify-center"
+        className="flex max-w-4xl mx-auto flex-wrap gap-6 sm:gap-6 md:gap-8 justify-center"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
@@ -116,6 +115,7 @@ export default function About() {
           </motion.div>
         ))}
       </motion.div>
+      <BottomNav />
     </div>
   );
 }

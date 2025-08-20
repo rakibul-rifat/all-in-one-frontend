@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import { FaWhatsapp } from "react-icons/fa";
+import BottomNav from "../components/BottomNav";
+import { motion } from "framer-motion";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -9,7 +11,7 @@ export default function Contact() {
     message: "",
   });
 
-  const [status, setStatus] = useState(null); // 'success' | 'error' | null
+  const [status, setStatus] = useState(null);
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -17,38 +19,42 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!formData.name || !formData.email || !formData.message) {
       setStatus("error");
       return;
     }
-
-    // TODO: Send formData to backend or email service
     setStatus("success");
     setFormData({ name: "", email: "", message: "" });
   };
 
-  // WhatsApp Redirect
-  const whatsappNumber = "8801618085195"; // replace with your number (without +)
+  const whatsappNumber = "8801618085195";
   const whatsappMessage = `Hello, I want to get in touch with you!`;
 
   return (
-    <div className="max-w-4xl mx-auto px-1 mt-5 pt-5 ">
+    <div className="max-w-4xl mx-auto px-1 mt-5 pt-5 mb-10 pb-10">
       <Navbar />
-      <h1 className="text-3xl sm:text-4xl font-bold mb-8 mt-5 text-center text-white">
-        Contact Me
-      </h1>
 
-      <form
+      {/* Heading animation */}
+      <motion.h1
+        initial={{ opacity: 0, y: 40, scale: 0.9 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="text-3xl sm:text-4xl font-bold mb-8 mt-5 text-center text-gray-500"
+      >
+        Contact Me
+      </motion.h1>
+
+      {/* Form animation */}
+      <motion.form
         onSubmit={handleSubmit}
         className="bg-gray-900 p-6 sm:p-8 rounded-xl shadow-lg space-y-6"
         noValidate
+        initial={{ opacity: 0, y: 60, scale: 0.9 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
       >
         <div>
-          <label
-            htmlFor="name"
-            className="block mb-2 text-white font-medium"
-          >
+          <label htmlFor="name" className="block mb-2 text-white font-medium">
             Name
           </label>
           <input
@@ -64,10 +70,7 @@ export default function Contact() {
         </div>
 
         <div>
-          <label
-            htmlFor="email"
-            className="block mb-2 text-white font-medium"
-          >
+          <label htmlFor="email" className="block mb-2 text-white font-medium">
             Email
           </label>
           <input
@@ -83,10 +86,7 @@ export default function Contact() {
         </div>
 
         <div>
-          <label
-            htmlFor="message"
-            className="block mb-2 text-white font-medium"
-          >
+          <label htmlFor="message" className="block mb-2 text-white font-medium">
             Message
           </label>
           <textarea
@@ -118,19 +118,25 @@ export default function Contact() {
             ⚠️ Please fill in all fields correctly.
           </p>
         )}
-      </form>
+      </motion.form>
 
-      {/* Floating WhatsApp Button */}
-      <a
-        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-          whatsappMessage
-        )}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg p-4 flex items-center justify-center transition-all duration-300"
-      >
-        <FaWhatsapp size={28} />
-      </a>
+     {/* Floating WhatsApp Button with bounce-in */}
+<motion.a
+  href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    whatsappMessage
+  )}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg p-4 flex items-center justify-center transition-all duration-300 z-50"
+  initial={{ opacity: 0, y: 80, scale: 0.8 }}
+  animate={{ opacity: 1, y: 0, scale: 1 }}
+  transition={{ duration: 0.5, delay: 0.3, type: "spring" }}
+>
+  <FaWhatsapp size={28} />
+</motion.a>
+
+
+      <BottomNav />
     </div>
   );
 }

@@ -12,6 +12,7 @@ import BlogPage from './components/BlogPage.jsx';
 import Calculator from './components/Calculator.jsx';
 import HomeBtn from './components/HomeBtn.jsx';
 import WeatherWidget from './components/WeatherWidget.jsx';
+import BottomNav from './components/BottomNav.jsx';
 // import ImageSearch from './components/ImageSearch.jsx';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/Calculator" element={<Calculator />} />
           <Route path="/HomeBtn" element={<HomeBtn />} />
           <Route path="/" element={<WeatherWidget />} />
+          <Route path="/" element={<BottomNav />} />
          
         </Routes>
       

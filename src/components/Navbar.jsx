@@ -14,7 +14,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-black shadow-md fixed top-0 left-0 w-full z-50">
+    <nav className="sm:bg-black bg-gray-900 rounded-b-lg shadow-md fixed top-0 left-0 w-full z-50">
       <div className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
         <h1 className=" left-0  text-gray-400">ONE LAST TRY</h1>
 
@@ -66,7 +66,7 @@ const Navbar = () => {
 <AnimatePresence>
   {menuOpen && (
     <motion.div
-      className="md:hidden pt-10 px-4 pb-10 space-y-2 bg-gray-900 rounded-xl text-center shadow"
+      className="md:hidden pt-10 px-4 pb-10 space-y-2 bg-gray-900 rounded-xl text-center shadow-md"
       initial={{ opacity: 0, height: 0 }}
       animate={{ opacity: 1, height: "auto" }}
       exit={{ opacity: 0, height: 0 }}
@@ -76,7 +76,7 @@ const Navbar = () => {
         <a
           key={link.name}
           href={link.href}
-          className="block text-gray-700 hover:text-cyan-600 transition font-medium"
+          className="block text-gray-500 hover:text-cyan-600 transition font-medium"
           onClick={() => setMenuOpen(false)}
         >
           {link.name}

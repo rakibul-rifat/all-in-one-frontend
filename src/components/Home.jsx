@@ -3,7 +3,8 @@ import gsap from "gsap";
 import Portfolio from "./Portfolio";
 import Project from "../pages/Project";
 import Navbar from "./Navbar";
-import WeatherWidget from "./WeatherWidget";
+
+import BottomNav from "./BottomNav";
 
 const Home = () => {
   useEffect(() => {
@@ -55,8 +56,10 @@ const Home = () => {
 
       <Navbar />
       <Portfolio />
+      
       <Project/>
-     <WeatherWidget />
+    
+     <BottomNav />
     </>
   );
 };
