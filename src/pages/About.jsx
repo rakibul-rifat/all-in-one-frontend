@@ -59,7 +59,7 @@ export default function About() {
       {/* Animated Heading */}
       <h1
         ref={headingRef}
-        className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
+        className="text-3xl sm:text-xl  md:text-5xl font-extrabold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
         style={{ letterSpacing: "0.08em" }}
       >
         {heading}

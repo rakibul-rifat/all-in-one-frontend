@@ -4,9 +4,10 @@ import { Link, useLocation } from "react-router-dom";
 import { Home, User, FolderKanban, Mail, BookOpen } from "lucide-react";
 
 const tabs = [
-  { id: "home", label: "Home", icon: <Home size={22} />, href: "/" },
+
   { id: "about", label: "About", icon: <User size={22} />, href: "/about" },
   { id: "projects", label: "Projects", icon: <FolderKanban size={22} />, href: "/projects" },
+    { id: "home", label: "Home", icon: <Home size={22} />, href: "/" },
   { id: "contact", label: "Contact", icon: <Mail size={22} />, href: "/contact" },
   { id: "blog", label: "Blog", icon: <BookOpen size={22} />, href: "/blog" },
 ];
@@ -44,12 +45,12 @@ export default function BottomNav() {
           >
             {tab.icon}
           </motion.div>
-
           <span
-            className={`text-xs mt-1 relative z-10 ${
-              active === tab.href ? "text-cyan-600 font-medium" : "text-gray-400"
-            }`}
-          >
+          className={`text-[10px] mt-1 relative z-10 ${
+          active === tab.href ? "text-cyan-600 font-medium" : "text-gray-400"
+              }`}
+            >
+
             {tab.label}
           </span>
         </Link>

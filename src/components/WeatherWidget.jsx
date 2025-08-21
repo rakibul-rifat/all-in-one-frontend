@@ -78,19 +78,19 @@ export default function WeatherWidget() {
     {
       content: (
         <div className="text-center">
-          <div className="text-2xl font-mono mb-2 tracking-widest">{clock}</div>
-          <div className="text-sm">Current Time</div>
+          <div className="text-2xl font-mono mb-2 tracking-widest text-gray-300">{clock}</div>
+          <div className="text-sm text-gray-300">Current Time</div>
         </div>
       )
     },
     {
       content: (
         <div className="text-center">
-          <div className="text-sm mb-2">Location: Chattogram</div>
+          <div className="text-sm mb-2 text-gray-300">Location: Chattogram</div>
           <div className="text-xl font-bold mb-1">
             {weather.temp !== null ? `${weather.temp}°C` : "Loading..."}
           </div>
-          <div className="text-sm">{weather.condition || ""}</div>
+          <div className="text-sm text-gray-300">{weather.condition || ""}</div>
         </div>
       )
     },
