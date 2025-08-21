@@ -40,7 +40,7 @@ export default function About() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-gray-200 px-4 sm:px-6 py-10 mt-5 mb-8">
+    <div className="max-w-4xl bg-black text-gray-200 px-1 sm:px-6 py-10 mt-5 mb-8">
       <Navbar />
 
       {/* Heading */}
@@ -66,60 +66,72 @@ export default function About() {
       </motion.section>
 
       {/* Technologies Section */}
-      <h2 className="text-2xl sm:text-3xl font-bold text-center text-purple-300 mb-6">
+      <h2 className="text-2xl sm:text-3xl m-1 font-bold text-center text-purple-300 mb-6">
         Technologies & Tools
       </h2>
-      <div className="flex flex-wrap gap-4 sm:gap-6 md:gap-8 justify-center mb-12 px-5">
-        {skills.map((skill, i) => (
-          <div
-            key={skill}
-            ref={(el) => (skillsRef.current[i] = el)}
-            className="flex items-center justify-center bg-gray-800 px-5 py-3 rounded-lg shadow-lg w-24 sm:w-28 md:w-32"
-          >
-            <span className="text-center text-sm px-2 sm:text-sm font-medium">
-              {skill}
-            </span>
-          </div>
-        ))}
-      </div>
+      <div className="grid grid-cols-4 gap-1 justify-center mb-12">
+  {skills.map((skill, i) => (
+    <div
+      key={skill}
+      ref={(el) => (skillsRef.current[i] = el)}
+      className="flex items-center justify-center bg-gray-800 px-2 py-1 rounded-lg shadow-lg"
+    >
+      <span className="text-center text-xs sm:text-sm font-medium px-2">
+        {skill}
+      </span>
+    </div>
+  ))}
+</div>
 
-      {/* Contact Info */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: true }}
-        className="max-w-4xl mx-auto bg-gray-900 p-6 rounded-xl shadow-xl space-y-4"
-      >
-        <h2 className="text-2xl font-semibold text-center text-cyan-400">
-          Get in Touch
-        </h2>
-        <div className="flex flex-col space-y-3 text-lg">
-          <a
-            href="https://www.linkedin.com/in/rakibul-rifat/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center hover:text-cyan-500"
-          >
-            <FaLinkedin className="mr-3 text-cyan-400" /> LinkedIn
-          </a>
-          <a
-            href="https://github.com/Rakibul-Rifat/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center hover:text-cyan-500"
-          >
-            <FaGithub className="mr-3 text-gray-400" /> GitHub
-          </a>
-          <a href="mailto:rakibulrifat@example.com" className="flex items-center hover:text-cyan-500">
-            <FaEnvelope className="mr-3 text-red-400" /> rakibul.rifat44@gmail.com
-          </a>
-          <span className="flex items-center">
-            <FaPhone className="mr-3 text-green-400" /> +880-1618085195
-          </span>
+
+   <motion.div
+      initial={{ scale: 0.8, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.3 }}
+      className="max-w-4xl mx-auto bg-gray-900 p-8 rounded-2xl shadow-[0_0_30px_rgba(0,255,255,0.1)] space-y-6 border border-gray-700"
+    >
+      {/* Heading */}
+      <h2 className="text-3xl font-bold text-center text-cyan-400 drop-shadow-[0_0_8px_rgba(0,255,255,0.8)]">
+        Get in Touch
+      </h2>
+
+      {/* Links */}
+      <div className="flex flex-col space-y-4 text-sm font-medium">
+        <a
+          href="https://www.linkedin.com/in/rakibul-rifat/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center bg-gray-800 hover:bg-gray-700 px-4 py-3 rounded-xl shadow-md hover:shadow-[0_0_15px_rgba(0,255,255,0.4)] transition-all duration-300"
+        >
+          <FaLinkedin className="mr-4 text-cyan-400 text-xl" />
+          <span className="text-gray-300">LinkedIn</span>
+        </a>
+
+        <a
+          href="https://github.com/Rakibul-Rifat/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center bg-gray-800 hover:bg-gray-700 px-4 py-3 rounded-xl shadow-md hover:shadow-[0_0_15px_rgba(0,255,255,0.4)] transition-all duration-300"
+        >
+          <FaGithub className="mr-4 text-gray-400 text-xl" />
+          <span className="text-gray-300">GitHub</span>
+        </a>
+
+        <a
+          href="mailto:rakibulrifat@example.com"
+          className="flex items-center bg-gray-800 hover:bg-gray-700 px-4 py-3 rounded-xl shadow-md hover:shadow-[0_0_15px_rgba(0,255,255,0.4)] transition-all duration-300"
+        >
+          <FaEnvelope className="mr-4 text-red-400 text-xl" />
+          <span className="text-gray-300">rakibul.rifat44@gmail.com</span>
+        </a>
+
+        <div className="flex items-center bg-gray-800 px-4 py-3 rounded-xl shadow-md">
+          <FaPhone className="mr-4 text-green-400 text-xl" />
+          <span className="text-gray-300">+880-1618085195</span>
         </div>
-      </motion.div>
-
+      </div>
+    </motion.div>
       <BottomNav />
     </div>
   );
