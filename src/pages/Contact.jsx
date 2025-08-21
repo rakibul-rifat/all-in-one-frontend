@@ -39,7 +39,7 @@ export default function Contact() {
         initial={{ opacity: 0, y: 40, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="text-3xl sm:text-4xl font-bold mb-8 mt-5 text-center text-gray-500"
+        className="text-2xl sm:text-2xl font-bold mb-8 mt-5 text-center text-gray-500"
       >
         Contact Me
       </motion.h1>

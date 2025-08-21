@@ -43,42 +43,49 @@ const Portfolio = () => {
     { name: "Facebook", icon: <FaFacebook />, url: "https://facebook.com" },
   ];
 
+  const zoomInVariant = {
+  hidden: { opacity: 0, scale: 0.5 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+
   return (
-    <div className="max-w-4xl mx-auto p-1 shadow-xl rounded-xl mt-7 bg-black">
+    <div className="max-w-4xl mx-auto p-1 shadow-xl rounded-xl mt-5 bg-black">
       {/* Profile Section */}
-      <motion.div
-        initial={{ opacity: 0, x: -100, scale: 0.9 }}
-        whileInView={{ opacity: 1, x: 0, scale: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        viewport={{ once: true }}
-        className="flex items-center sm:bg-black bg-gray-900 p-4 rounded-lg space-x-6 mt-8"
-      >
-        <img
-          src="https://avatars.githubusercontent.com/u/192508513?v=4"
-          alt="Profile"
-          className="w-32 h-32 rounded-full object-cover border-4 border-gray-500"
-        />
-        <div>
-          <h1 className="text-xl text-gray-500 font-bold">Rakibul Islam</h1>
-          <p className="text-gray-600 text-sm">Frontend Web Developer</p>
-          <p className="text-gray-500 text-sm">
-            I love creating beautiful and interactive user interfaces.
-          </p>
-          <div className="flex space-x-4 mt-2">
-            {socials.map((social) => (
-              <a
-                key={social.name}
-                href={social.url}
-                className="text-gray-600 hover:text-cyan-500 text-xl"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {social.icon}
-              </a>
-            ))}
-          </div>
-        </div>
-      </motion.div>
+<motion.div
+  variants={zoomInVariant}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.3 }}
+  className="flex items-center sm:bg-black bg-gray-900 p-4 rounded-lg space-x-6 mt-8"
+>
+  <img
+    src="https://avatars.githubusercontent.com/u/192508513?v=4"
+    alt="Profile"
+    className="w-32 h-32 rounded-full object-cover border-4 border-gray-500"
+  />
+  <div>
+    <h1 className="text-xl text-gray-500 font-bold">Rakibul Islam</h1>
+    <p className="text-gray-600 text-sm">Frontend Web Developer</p>
+    <p className="text-gray-500 text-sm">
+      I love creating beautiful and interactive user interfaces.
+    </p>
+    <div className="flex space-x-4 mt-2">
+      {socials.map((social) => (
+        <a
+          key={social.name}
+          href={social.url}
+          className="text-gray-600 hover:text-cyan-500 text-xl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {social.icon}
+        </a>
+      ))}
+    </div>
+  </div>
+</motion.div>
+
 
       <WeatherWidget />
 

@@ -19,7 +19,7 @@ const projectList = [
 const Projects = () => {
   return (
     <section id="projects" className="bg-black pb-10">
-      <h2 className="text-3xl font-bold text-center mb-10 text-gray-800 mt-20">
+      <h2 className="text-2xl font-bold text-center mb-10 text-gray-800 mt-20">
         My Projects
       </h2>
 
