@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     <nav className="sm:bg-black bg-gray-900 rounded-b-lg shadow-md fixed top-0 left-0 w-full z-0">
-      <div className="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
         <h1 className=" left-0 text-sm  text-gray-400">ONE LAST TRY</h1>
 
         {/* Desktop Links */}

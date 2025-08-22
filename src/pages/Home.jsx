@@ -3,6 +3,7 @@ import gsap from "gsap";
 import Portfolio from "../components/Portfolio";
 import Project from "./Project";
 import BottomNav from "../components/BottomNav";
+import GetInTouch from "../components/GetInTouch";
 
 const Home = () => {
   const [showLoader, setShowLoader] = useState(false);
@@ -60,9 +61,12 @@ const Home = () => {
       )}
 
       {/* Main Content */}
+    <div className=" pb-10">
       <Portfolio />
       <Project />
+      <GetInTouch />
       <BottomNav />
+    </div>
     </>
   );
 };

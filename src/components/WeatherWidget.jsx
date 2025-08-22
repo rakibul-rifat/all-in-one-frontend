@@ -97,7 +97,7 @@ export default function WeatherWidget() {
     {
       content: !loading ? (
         <div className="text-center px-4">
-          <div className="text-lg italic mb-1">"{quotes[currentSlide % quotes.length]?.text}"</div>
+          <div className="text-sm italic mb-1">"{quotes[currentSlide % quotes.length]?.text}"</div>
           <div className="text-xs">- {quotes[currentSlide % quotes.length]?.author || "Unknown"}</div>
         </div>
       ) : (

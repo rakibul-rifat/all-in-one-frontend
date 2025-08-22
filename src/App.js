@@ -13,12 +13,13 @@ import Calculator from './components/Calculator.jsx';
 import HomeBtn from './components/HomeBtn.jsx';
 import WeatherWidget from './components/WeatherWidget.jsx';
 import BottomNav from './components/BottomNav.jsx';
+import ScrollToTop from "./components/ScrollToTop";
 // import ImageSearch from './components/ImageSearch.jsx';
 
 function App() {
   return (
     <Router>
-
+    <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Todo" element={<Todo />} />
