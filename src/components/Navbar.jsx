@@ -33,7 +33,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-gray-700 focus:outline-none"
+          className="md:hidden text-gray-400 focus:outline-none"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           <svg
@@ -76,7 +76,7 @@ const Navbar = () => {
         <a
           key={link.name}
           href={link.href}
-          className="block text-gray-500 hover:text-cyan-600 transition font-medium"
+          className="block text-gray-300 hover:text-cyan-600 transition font-medium"
           onClick={() => setMenuOpen(false)}
         >
           {link.name}

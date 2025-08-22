@@ -19,7 +19,7 @@ const projectList = [
 const Projects = () => {
   return (
     <section id="projects" className="bg-black pb-10">
-      <h2 className="text-2xl font-bold text-center mb-10 text-gray-800 mt-20">
+      <h2 className="text-2xl font-bold text-center mb-10 text-gray-300 mt-20">
         My Projects
       </h2>
 
@@ -39,7 +39,7 @@ const Projects = () => {
               to={project.path}
               className="bg-gray-900 m-1 rounded-lg shadow hover:shadow-xl transition p-6 flex items-center justify-between group"
             >
-              <span className="text-gray-700 font-medium group-hover:text-cyan-600">
+              <span className="text-gray-300 font-medium group-hover:text-cyan-600">
                 {project.name}
               </span>
               <FaExternalLinkAlt className="text-gray-400 group-hover:text-cyan-600" />

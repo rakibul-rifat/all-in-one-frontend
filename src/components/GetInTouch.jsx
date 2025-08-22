@@ -43,7 +43,7 @@ export default class GetInTouch extends PureComponent {
         </a>
 
         <a
-          href="mailto:rakibulrifat@example.com"
+          href="mailto:rakibul.rifat44@gmail.com"
           className="flex items-center bg-gray-800 hover:bg-gray-700 px-4 py-3 rounded-xl shadow-md hover:shadow-[0_0_15px_rgba(0,255,255,0.4)] transition-all duration-300"
         >
           <FaEnvelope className="mr-4 text-red-400 text-xl" />

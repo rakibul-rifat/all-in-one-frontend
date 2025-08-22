@@ -65,9 +65,9 @@ const Portfolio = () => {
     className="w-32 h-32 rounded-full object-cover border-4 border-gray-500"
   />
   <div>
-    <h1 className="text-xl text-gray-500 font-bold">Rakibul Islam</h1>
-    <p className="text-gray-600 text-sm">Frontend Web Developer</p>
-    <p className="text-gray-500 text-sm">
+    <h1 className="text-xl text-gray-300 font-bold">Rakibul Islam</h1>
+    <p className="text-gray-400 text-sm">Frontend Web Developer</p>
+    <p className="text-gray-300 text-sm">
       I love creating beautiful and interactive user interfaces.
     </p>
     <div className="flex space-x-4 mt-2">
