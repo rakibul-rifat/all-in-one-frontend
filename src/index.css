@@ -21,7 +21,7 @@ code {
 @tailwind components;
 @tailwind utilities;
 
-.toolbar-background-md{
+.toolbar-background-sm{
     background-color: rgb(9, 9, 176);
   }
   
