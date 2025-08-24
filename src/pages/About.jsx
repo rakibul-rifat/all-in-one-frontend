@@ -35,7 +35,7 @@ export default function About() {
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
-        className="mb-10 max-w-4xl mx-auto space-y-6"
+        className="mb-10 p-2 max-w-4xl mx-auto space-y-6"
       >
         <p className="text-sm sm:text-lg leading-relaxed text-justify">
           I am a frontend-focused developer passionate about creating visually appealing, fast, and user-friendly web applications. I specialize in React, JavaScript, and Tailwind CSS, building responsive interfaces that work seamlessly across devices. I enjoy blending creativity with functionality, using Framer Motion and GSAP to add smooth, modern animations that enhance user experience.
