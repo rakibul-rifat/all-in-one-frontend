@@ -38,9 +38,9 @@ const Portfolio = () => {
   ];
 
   const socials = [
-    { name: "GitHub", icon: <FaGithub />, url: "https://github.com/Rakibul-Rifat" },
-    { name: "LinkedIn", icon: <FaLinkedin />, url: "https://linkedin.com" },
-    { name: "Facebook", icon: <FaFacebook />, url: "https://facebook.com" },
+    { name: "GitHub", icon: <FaGithub />, url: "https://github.com/rakibul-rifat" },
+    { name: "LinkedIn", icon: <FaLinkedin />, url: "https://www.linkedin.com/in/rakibul-rifat/" },
+    { name: "Facebook", icon: <FaFacebook />, url: "https://facebook.com/rakibul.rifat/" },
   ];
 
   const zoomInVariant = {

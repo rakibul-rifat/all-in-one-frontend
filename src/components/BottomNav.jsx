@@ -17,7 +17,7 @@ export default function BottomNav() {
   const [active, setActive] = useState(location.pathname);
 
   return (
-    <div className="fixed lg:hidden bottom-0 left-0 right-0 m-0 max-w-4xl mx-auto bg-gray-900 text-white rounded-t-2xl shadow-lg px-2 flex justify-between">
+    <div className="fixed lg:hidden bottom-0 left-0 right-0 m-0 max-w-4xl mx-auto bg-gray-900 text-white rounded-t-2xl shadow-lg px-2 flex justify-between border-t-2 border-gray-800">
       {tabs.map((tab) => (
         <Link
           key={tab.id}

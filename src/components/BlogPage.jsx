@@ -169,7 +169,7 @@ export default function BlogPage() {
 
   return (
     <motion.div 
-      className="max-w-4xl mx-auto p-2 mt-9 space-y-6 mb-10 pb-10"
+      className="max-w-4xl mx-auto p-1 mt-9 space-y-6 mb-10 pb-10"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -177,7 +177,7 @@ export default function BlogPage() {
       {/* Admin Login */}
       {!admin && (
         <motion.div 
-          className="bg-gray-900 text-gray-400 p-4 rounded space-y-2 mb-4"
+          className=" text-gray-400 p-1 rounded space-y-2 mb-4"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
@@ -265,7 +265,7 @@ export default function BlogPage() {
       )}
 
       {/* Blog List */}
-      <div className="grid bg-gray-900 grid-cols-1 gap-6">
+      <div className="grid grid-cols-1 gap-6">
         {loading ? (
           <motion.div 
             className="flex justify-center items-center py-10"
@@ -294,7 +294,7 @@ export default function BlogPage() {
               {currentBlogs.map((blog, index) => (
                 <motion.div
                   key={blog.id}
-                  className="border p-4 rounded shadow space-y-2 bg-gray-900"
+                  className="border-2 border-gray-800 p-2 rounded shadow space-y-2 bg-gray-900"
                   variants={itemVariants}
                   initial="hidden"
                   animate="visible"
