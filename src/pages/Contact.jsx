@@ -31,7 +31,7 @@ export default function Contact() {
   const whatsappMessage = `Hello, I want to get in touch with you!`;
 
   return (
-    <div className="max-w-4xl mx-auto px-1 mt-5 pt-5 mb-10 pb-10">
+    <div className="max-w-4xl mx-auto px-1 mt-5 pt-5 mb-10 pb-10 ">
       <Navbar />
 
       {/* Heading animation */}
@@ -47,7 +47,7 @@ export default function Contact() {
       {/* Form animation */}
       <motion.form
         onSubmit={handleSubmit}
-        className="bg-gray-900 p-2 sm:p-8 rounded-xl shadow-lg space-y-6"
+        className="sm:bg-black  p-1 sm:p-8 rounded-xl shadow-lg space-y-6"
         noValidate
         initial={{ opacity: 0, y: 60, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}

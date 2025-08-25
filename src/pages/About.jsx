@@ -49,21 +49,22 @@ export default function About() {
       <h2 className="text-2xl sm:text-3xl m-1 font-bold text-center text-purple-300 mb-6">
         Technologies & Tools
       </h2>
-      <div className="grid grid-cols-4 gap-1 justify-center mb-12">
-        {skills.map((skill, i) => (
-          <motion.div
-            key={skill}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: i * 0.03, ease: "easeOut" }}
-            className="flex items-center justify-center bg-gray-800 px-2 py-1 rounded-lg shadow-lg"
-          >
-            <span className="text-center text-xs sm:text-sm font-medium px-2">
-              {skill}
-            </span>
-          </motion.div>
-        ))}
-      </div>
+     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-4 justify-center mb-12">
+  {skills.map((skill, i) => (
+    <motion.div
+      key={skill}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: i * 0.03, ease: "easeOut" }}
+      className="flex items-center justify-center bg-gray-800 px-3 py-2 rounded-lg shadow-lg"
+    >
+      <span className="text-center text-xs sm:text-sm md:text-base font-medium">
+        {skill}
+      </span>
+    </motion.div>
+  ))}
+</div>
+
 
       <GetInTouch />
       <BottomNav />
