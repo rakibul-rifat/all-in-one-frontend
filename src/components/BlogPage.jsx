@@ -96,10 +96,10 @@ export default function BlogPage() {
   const { theme } = useTheme(); // Get current theme
 
   // Theme-based styles
-  const containerBg = theme === "dark" ? "bg-black" : "bg-gray-50";
+  const containerBg = theme === "dark" ? "bg-black" : "bg-white";
   const textColor = theme === "dark" ? "text-gray-300" : "text-gray-800";
   const titleColor = theme === "dark" ? "text-gray-300" : "text-gray-900";
-  const formBg = theme === "dark" ? "bg-gray-800" : "bg-gray-200";
+  const formBg = theme === "dark" ? "bg-gray-800" : "bg-white";
   const formText = theme === "dark" ? "text-gray-300" : "text-gray-800";
   const inputBg = theme === "dark" ? "bg-gray-700" : "bg-white";
   const inputBorder = theme === "dark" ? "border-gray-600" : "border-gray-300";

@@ -22,7 +22,7 @@ const Projects = () => {
 
   // Theme-based styles
   const sectionBg = theme === "dark" ? "bg-black" : "bg-white";
-  const cardBg = theme === "dark" ? "bg-gray-900" : "bg-white";
+  const cardBg = theme === "dark" ? "bg-gray-900" : "bg-gray-50";
   const titleColor = theme === "dark" ? "text-gray-300" : "text-gray-800";
   const textColor = theme === "dark" ? "text-gray-300" : "text-gray-700";
   const hoverTextColor = theme === "dark" ? "group-hover:text-cyan-600" : "group-hover:text-blue-600";
@@ -30,14 +30,14 @@ const Projects = () => {
   const hoverIconColor = theme === "dark" ? "group-hover:text-cyan-600" : "group-hover:text-blue-600";
   const shadow = theme === "dark" ? "shadow-lg" : "shadow-lg";
   const hoverShadow = theme === "dark" ? "hover:shadow-xl" : "hover:shadow-lg";
-
+  const border = theme === "dark" ? "border-none"  : "border-2 border-gray-100";
   return (
     <section id="projects" className={`${sectionBg} pb-10`}>
-      <h2 className={`text-2xl font-bold text-center mb-10 ${titleColor} mt-20`}>
+      <h2 className={`text-2xl  font-bold text-center mb-10 ${titleColor} mt-20 `}>
         My Projects
       </h2>
 
-      <div className="max-w-4xl mx-auto grid gap-2 md:grid-cols-2">
+      <div className="max-w-4xl mx-auto grid gap-2 md:grid-cols-2 ">
         {projectList.map((project, index) => (
           <motion.div
             key={project.name}
@@ -51,9 +51,9 @@ const Projects = () => {
           >
             <Link
               to={project.path}
-              className={`${cardBg} ${shadow} ${hoverShadow} m-1 rounded-lg transition p-6 flex items-center justify-between group`}
+              className={`${cardBg} ${shadow} ${hoverShadow} m-1 rounded-lg transition p-6 flex items-center justify-between group ${border}`}
             >
-              <span className={`${textColor} font-medium ${hoverTextColor}`}>
+              <span className={`${textColor} font-medium  ${hoverTextColor}`}>
                 {project.name}
               </span>
               <FaExternalLinkAlt className={`${iconColor} ${hoverIconColor}`} />

@@ -52,21 +52,21 @@ const Portfolio = () => {
   };
 
   // Theme-based styles with smooth transitions
-  const bgMain = `${theme === "dark" ? "bg-dark" : "bg-white"} transition-colors duration-500`;
+  const bgMain = `${theme === "dark" ? "sm:bg-black bg-gray-900 " : "bg-gray-200 border-1 border-gray-300 sm:bg-white"} transition-colors duration-500`;
   const textMain = `${theme === "dark" ? "text-gray-200" : "text-gray-800"} transition-colors duration-500`;
-  const cardBg = `${theme === "dark" ? "bg-gray-900" : "bg-gray-100"} transition-colors duration-500`;
+  const cardBg = `${theme === "dark" ? "bg-black" : "bg-white"} transition-colors duration-500`;
   const cardText = `${theme === "dark" ? "text-gray-300" : "text-gray-800"} transition-colors duration-500`;
   const cardSubText = `${theme === "dark" ? "text-gray-400" : "text-gray-500"} transition-colors duration-500`;
 
   return (
-    <div className={`max-w-4xl mx-auto p-1 rounded-xl mt-7 ${bgMain} ${textMain}`}>
+    <div className={`max-w-4xl mx-auto p-1 rounded-xl mt-7  ${textMain}`}>
       {/* Profile Section */}
       <motion.div
         variants={zoomInVariant}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className={`flex items-center ${bgMain} p-1 sm:p-4 rounded-lg space-x-6 mt-8`}
+        className={`flex items-center ${bgMain} p-6 rounded-lg  space-x-6 mt-8 `}
       >
         <img
           src="https://avatars.githubusercontent.com/u/192508513?v=4"
