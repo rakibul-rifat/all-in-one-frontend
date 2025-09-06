@@ -3,7 +3,6 @@ import { useTheme } from "./context/ThemeProvider";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 
-import ThemeToggle from "./components/ThemeToggle";
 import Todo from "./components/Todo";
 import Home from "./pages/Home.jsx";
 import BanglaTypingPractice from "./components/BanglaTypingPractice.jsx";
@@ -57,9 +56,7 @@ function App() {
       </Helmet>
 
       <ScrollToTop />
-      <div className="fixed top-4 right-20 z-50">
-        <ThemeToggle />
-      </div>
+      
 
       <Routes>
         <Route path="/" element={<Home />} />

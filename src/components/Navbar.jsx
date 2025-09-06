@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../context/ThemeProvider"; // Import the theme context
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,7 +16,7 @@ const Navbar = () => {
   ];
 
   // Theme-based styles
-  const navBg = theme === "dark" ? "bg-gray-900" : "bg-gray-100";
+  const navBg = theme === "dark" ? "bg-gray-900" : "bg-white";
   const desktopNavBg = theme === "dark" ? "sm:bg-black" : "sm:bg-white";
   const textColor = theme === "dark" ? "text-gray-400" : "text-gray-600";
   const linkColor = theme === "dark" ? "text-gray-500" : "text-gray-600";
@@ -30,7 +31,9 @@ const Navbar = () => {
     <nav className={`${desktopNavBg} ${navBg} rounded-b-lg ${shadow} fixed top-0 left-0 w-full z-0`}>
       <div className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
         <h1 className={`left-0 text-sm ${textColor}`}>ONE LAST TRY</h1>
-
+<div className="fixed top-3 right-20 z-50">
+        <ThemeToggle />
+      </div>
         {/* Desktop Links */}
         <div className="hidden md:flex space-x-6">
           {links.map((link) => (

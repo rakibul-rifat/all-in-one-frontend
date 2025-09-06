@@ -52,7 +52,7 @@ const Portfolio = () => {
   };
 
   // Theme-based styles with smooth transitions
-  const bgMain = `${theme === "dark" ? "bg-black" : "bg-white"} transition-colors duration-500`;
+  const bgMain = `${theme === "dark" ? "bg-dark" : "bg-white"} transition-colors duration-500`;
   const textMain = `${theme === "dark" ? "text-gray-200" : "text-gray-800"} transition-colors duration-500`;
   const cardBg = `${theme === "dark" ? "bg-gray-900" : "bg-gray-100"} transition-colors duration-500`;
   const cardText = `${theme === "dark" ? "text-gray-300" : "text-gray-800"} transition-colors duration-500`;
@@ -66,7 +66,7 @@ const Portfolio = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className={`flex items-center ${bgMain} p-4 rounded-lg space-x-6 mt-8`}
+        className={`flex items-center ${bgMain} p-1 sm:p-4 rounded-lg space-x-6 mt-8`}
       >
         <img
           src="https://avatars.githubusercontent.com/u/192508513?v=4"

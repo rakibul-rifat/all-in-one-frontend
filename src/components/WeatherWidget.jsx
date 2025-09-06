@@ -137,7 +137,7 @@ export default function WeatherWidget() {
 
   return (
     <motion.div
-      className={`${widgetBg} rounded-b-lg shadow-md mt-2 rounded-xl p-4 max-w-4xl mx-auto text-center overflow-hidden`}
+      className={`${widgetBg} rounded-b-lg  mt-2 rounded-xl p-4 max-w-4xl mx-auto text-center overflow-hidden`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}

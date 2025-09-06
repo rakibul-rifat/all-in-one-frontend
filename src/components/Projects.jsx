@@ -28,7 +28,7 @@ const Projects = () => {
   const hoverTextColor = theme === "dark" ? "group-hover:text-cyan-600" : "group-hover:text-blue-600";
   const iconColor = theme === "dark" ? "text-gray-400" : "text-gray-500";
   const hoverIconColor = theme === "dark" ? "group-hover:text-cyan-600" : "group-hover:text-blue-600";
-  const shadow = theme === "dark" ? "shadow" : "shadow-md";
+  const shadow = theme === "dark" ? "shadow-lg" : "shadow-lg";
   const hoverShadow = theme === "dark" ? "hover:shadow-xl" : "hover:shadow-lg";
 
   return (
