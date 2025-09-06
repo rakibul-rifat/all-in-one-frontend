@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "../context/ThemeProvider"; // Import the theme context
 
 export default function WeatherWidget() {
   const [weather, setWeather] = useState({ temp: null, condition: "" });
@@ -7,6 +8,7 @@ export default function WeatherWidget() {
   const [quotes, setQuotes] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loading, setLoading] = useState(true);
+  const { theme } = useTheme(); // Get current theme
 
   // Fetch weather for Chattogram
   useEffect(() => {
@@ -65,7 +67,7 @@ export default function WeatherWidget() {
     return () => clearInterval(interval);
   }, []);
 
-  // Auto-rotate slides every 2 seconds
+  // Auto-rotate slides every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % 3); // 3 slides: time, weather, quote
@@ -73,42 +75,69 @@ export default function WeatherWidget() {
     return () => clearInterval(interval);
   }, []);
 
+  // Theme-based styles
+  const widgetBg = theme === "dark" 
+    ? "bg-dark" 
+    : "bg-white";
+    
+  const textColor = theme === "dark" 
+    ? "text-gray-200" 
+    : "text-gray-800";
+    
+  const secondaryTextColor = theme === "dark" 
+    ? "text-gray-400" 
+    : "text-gray-600";
+    
+  const indicatorActive = theme === "dark" 
+    ? "bg-purple-500" 
+    : "bg-purple-600";
+    
+  const indicatorInactive = theme === "dark" 
+    ? "bg-gray-700" 
+    : "bg-gray-300";
+
   // Slider content
   const slides = [
     {
       content: (
         <div className="text-center">
-          <div className="text-2xl font-mono mb-2 tracking-widest text-gray-300">{clock}</div>
-          <div className="text-sm text-gray-300">Current Time</div>
+          <div className={`text-2xl font-mono mb-2 tracking-widest ${textColor}`}>
+            {clock}
+          </div>
+          <div className={`text-sm ${secondaryTextColor}`}>Current Time</div>
         </div>
       )
     },
     {
       content: (
         <div className="text-center">
-          <div className="text-sm mb-2 text-gray-300">Location: Chattogram</div>
-          <div className="text-xl font-bold mb-1">
+          <div className={`text-sm mb-2 ${secondaryTextColor}`}>Location: Chattogram</div>
+          <div className={`text-xl font-bold mb-1 ${textColor}`}>
             {weather.temp !== null ? `${weather.temp}°C` : "Loading..."}
           </div>
-          <div className="text-sm text-gray-300">{weather.condition || ""}</div>
+          <div className={`text-sm ${secondaryTextColor}`}>{weather.condition || ""}</div>
         </div>
       )
     },
     {
       content: !loading ? (
         <div className="text-center px-4">
-          <div className="text-sm italic mb-1">"{quotes[currentSlide % quotes.length]?.text}"</div>
-          <div className="text-xs">- {quotes[currentSlide % quotes.length]?.author || "Unknown"}</div>
+          <div className={`text-sm italic mb-1 ${textColor}`}>
+            "{quotes[currentSlide % quotes.length]?.text}"
+          </div>
+          <div className={`text-xs ${secondaryTextColor}`}>
+            - {quotes[currentSlide % quotes.length]?.author || "Unknown"}
+          </div>
         </div>
       ) : (
-        <div className="text-center">Loading quote...</div>
+        <div className={`text-center ${textColor}`}>Loading quote...</div>
       )
     }
   ];
 
   return (
     <motion.div
-      className="sm:bg-black bg-gray-900 rounded-b-lg shadow-md mt-2 rounded-xl p-4  max-w-4xl mx-auto  text-gray-200 text-center overflow-hidden"
+      className={`${widgetBg} rounded-b-lg shadow-md mt-2 rounded-xl p-4 max-w-4xl mx-auto text-center overflow-hidden`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -133,7 +162,9 @@ export default function WeatherWidget() {
         {[0, 1, 2].map((index) => (
           <button
             key={index}
-            className={`w-2 h-2 rounded-full ${currentSlide === index ? 'bg-purple-500' : 'bg-gray-600'}`}
+            className={`w-2 h-2 rounded-full transition-colors ${
+              currentSlide === index ? indicatorActive : indicatorInactive
+            }`}
             onClick={() => setCurrentSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
           />

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useTheme } from "../context/ThemeProvider"; // Import the theme context
 
 const projectList = [
   { name: "Portfolio Website", path: "https://rakibul-rifat.netlify.app/" },
@@ -17,9 +18,22 @@ const projectList = [
 ];
 
 const Projects = () => {
+  const { theme } = useTheme(); // Get current theme
+
+  // Theme-based styles
+  const sectionBg = theme === "dark" ? "bg-black" : "bg-white";
+  const cardBg = theme === "dark" ? "bg-gray-900" : "bg-white";
+  const titleColor = theme === "dark" ? "text-gray-300" : "text-gray-800";
+  const textColor = theme === "dark" ? "text-gray-300" : "text-gray-700";
+  const hoverTextColor = theme === "dark" ? "group-hover:text-cyan-600" : "group-hover:text-blue-600";
+  const iconColor = theme === "dark" ? "text-gray-400" : "text-gray-500";
+  const hoverIconColor = theme === "dark" ? "group-hover:text-cyan-600" : "group-hover:text-blue-600";
+  const shadow = theme === "dark" ? "shadow" : "shadow-md";
+  const hoverShadow = theme === "dark" ? "hover:shadow-xl" : "hover:shadow-lg";
+
   return (
-    <section id="projects" className="bg-black pb-10">
-      <h2 className="text-2xl font-bold text-center mb-10 text-gray-300 mt-20">
+    <section id="projects" className={`${sectionBg} pb-10`}>
+      <h2 className={`text-2xl font-bold text-center mb-10 ${titleColor} mt-20`}>
         My Projects
       </h2>
 
@@ -27,22 +41,22 @@ const Projects = () => {
         {projectList.map((project, index) => (
           <motion.div
             key={project.name}
-            initial={{ opacity: 0, x: -100 }}   // start hidden, slide from left
-            animate={{ opacity: 1, x: 0 }}      // fade in + move to normal position
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{
               duration: 0.6,
               ease: "easeOut",
-              delay: index * 0.1,              // stagger animation by index
+              delay: index * 0.1,
             }}
           >
             <Link
               to={project.path}
-              className="bg-gray-900 m-1 rounded-lg shadow hover:shadow-xl transition p-6 flex items-center justify-between group"
+              className={`${cardBg} ${shadow} ${hoverShadow} m-1 rounded-lg transition p-6 flex items-center justify-between group`}
             >
-              <span className="text-gray-300 font-medium group-hover:text-cyan-600">
+              <span className={`${textColor} font-medium ${hoverTextColor}`}>
                 {project.name}
               </span>
-              <FaExternalLinkAlt className="text-gray-400 group-hover:text-cyan-600" />
+              <FaExternalLinkAlt className={`${iconColor} ${hoverIconColor}`} />
             </Link>
           </motion.div>
         ))}

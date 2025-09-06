@@ -13,7 +13,8 @@ import {
 } from "firebase/firestore";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { motion, AnimatePresence } from "framer-motion"; // Import AnimatePresence
+import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "../context/ThemeProvider"; // Import the theme context
 
 const BLOGS_REF = collection(db, "blogs");
 const ADMIN_EMAIL = "abc@gmail.com";
@@ -92,6 +93,25 @@ export default function BlogPage() {
   const [adminEmail, setAdminEmail] = useState("");
   const [adminPass, setAdminPass] = useState("");
   const postsPerPage = 5;
+  const { theme } = useTheme(); // Get current theme
+
+  // Theme-based styles
+  const containerBg = theme === "dark" ? "bg-black" : "bg-gray-50";
+  const textColor = theme === "dark" ? "text-gray-300" : "text-gray-800";
+  const titleColor = theme === "dark" ? "text-gray-300" : "text-gray-900";
+  const formBg = theme === "dark" ? "bg-gray-800" : "bg-gray-200";
+  const formText = theme === "dark" ? "text-gray-300" : "text-gray-800";
+  const inputBg = theme === "dark" ? "bg-gray-700" : "bg-white";
+  const inputBorder = theme === "dark" ? "border-gray-600" : "border-gray-300";
+  const inputText = theme === "dark" ? "text-white" : "text-gray-900";
+  const blogCardBg = theme === "dark" ? "bg-gray-900" : "bg-white";
+  const blogCardBorder = theme === "dark" ? "border-gray-700" : "border-gray-300";
+  const buttonPrimary = theme === "dark" ? "bg-blue-600" : "bg-blue-500";
+  const buttonSuccess = theme === "dark" ? "bg-green-600" : "bg-green-500";
+  const buttonHover = theme === "dark" ? "hover:bg-blue-700" : "hover:bg-blue-600";
+  const paginationActive = theme === "dark" ? "bg-blue-600 text-white" : "bg-blue-500 text-white";
+  const paginationInactive = theme === "dark" ? "bg-gray-700 text-gray-300" : "bg-gray-200 text-gray-700";
+  const loadingColor = theme === "dark" ? "text-blue-400" : "text-blue-600";
 
   // Fetch blogs in real-time
   useEffect(() => {
@@ -169,7 +189,7 @@ export default function BlogPage() {
 
   return (
     <motion.div 
-      className="max-w-4xl mx-auto p-1 mt-9 space-y-6 mb-10 pb-10"
+      className={`max-w-4xl mx-auto p-1 mt-9 space-y-6 mb-10 pb-10 ${containerBg}`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -177,16 +197,16 @@ export default function BlogPage() {
       {/* Admin Login */}
       {!admin && (
         <motion.div 
-          className=" text-gray-400 p-1 rounded space-y-2 mb-4"
+          className={`${formBg} ${formText} p-1 rounded space-y-2 mb-4`}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
-          <h2 className="font-semibold text-lg mt-5">Admin Login</h2>
+          <h2 className={`font-semibold text-lg mt-5 ${titleColor}`}>Admin Login</h2>
           <motion.input
             type="email"
             placeholder="Enter admin email"
-            className="p-2 border w-full"
+            className={`p-2 border ${inputBorder} w-full ${inputBg} ${inputText}`}
             value={adminEmail}
             onChange={(e) => setAdminEmail(e.target.value)}
             whileFocus={{ scale: 1.02 }}
@@ -195,7 +215,7 @@ export default function BlogPage() {
           <motion.input
             type="password"
             placeholder="Enter admin password"
-            className="p-2 border w-full mt-2"
+            className={`p-2 border ${inputBorder} w-full mt-2 ${inputBg} ${inputText}`}
             value={adminPass}
             onChange={(e) => setAdminPass(e.target.value)}
             whileFocus={{ scale: 1.02 }}
@@ -203,7 +223,7 @@ export default function BlogPage() {
           />
           <motion.button
             onClick={handleAdminLogin}
-            className="bg-blue-600 text-white px-4 py-2 mt-2"
+            className={`${buttonPrimary} text-white px-4 py-2 mt-2`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -215,30 +235,35 @@ export default function BlogPage() {
       {/* Blog Form */}
       {admin && (
         <motion.div 
-          className="bg-gray-200 shadow p-2 rounded space-y-2"
+          className={`${formBg} shadow p-2 rounded space-y-2`}
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="font-semibold text-lg">
+          <h2 className={`font-semibold text-lg ${titleColor}`}>
             {editingId ? "✏️ Edit Blog" : "➕ Create New Blog"}
           </h2>
           <motion.input
             type="text"
             placeholder="Title"
             value={title}
-            className="p-2 border w-full"
+            className={`p-2 border ${inputBorder} w-full ${inputBg} ${inputText}`}
             onChange={(e) => setTitle(e.target.value)}
             whileFocus={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300 }}
           />
-          <ReactQuill value={content} onChange={setContent} className="mb-2" />
+          <ReactQuill 
+            value={content} 
+            onChange={setContent} 
+            className="mb-2" 
+            theme={theme === "dark" ? "snow" : "snow"}
+          />
           <motion.input
             type="text"
             placeholder="Paste image link here (https://...)"
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
-            className="p-2 border w-full mb-2"
+            className={`p-2 border ${inputBorder} w-full mb-2 ${inputBg} ${inputText}`}
             whileFocus={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300 }}
           />
@@ -255,7 +280,7 @@ export default function BlogPage() {
           )}
           <motion.button
             onClick={handleSubmit}
-            className="bg-green-600 text-white px-4 py-2"
+            className={`${buttonSuccess} text-white px-4 py-2`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -281,7 +306,7 @@ export default function BlogPage() {
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"/>
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
             </motion.svg>
-            <span className="text-blue-400 text-lg">Loading blog posts...</span>
+            <span className={`${loadingColor} text-lg`}>Loading blog posts...</span>
           </motion.div>
         ) : (
           <motion.div
@@ -294,7 +319,7 @@ export default function BlogPage() {
               {currentBlogs.map((blog, index) => (
                 <motion.div
                   key={blog.id}
-                  className="border-2 border-gray-800 p-2 rounded shadow space-y-2 bg-gray-900"
+                  className={`border-2 ${blogCardBorder} p-2 rounded shadow space-y-2 ${blogCardBg}`}
                   variants={itemVariants}
                   initial="hidden"
                   animate="visible"
@@ -307,7 +332,7 @@ export default function BlogPage() {
                   custom={index}
                 >
                   <motion.h3 
-                    className="text-xl text-gray-200 font-bold"
+                    className={`text-xl ${textColor} font-bold`}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 }}
@@ -324,7 +349,7 @@ export default function BlogPage() {
                     />
                   )}
                   <motion.div 
-                    className="text-gray-200"
+                    className={textColor}
                     variants={contentVariants}
                   >
                     {expanded[blog.id] ? (
@@ -402,8 +427,8 @@ export default function BlogPage() {
             onClick={() => setCurrentPage(i + 1)}
             className={`px-3 py-1 rounded ${
               currentPage === i + 1
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 text-gray-700"
+                ? paginationActive
+                : paginationInactive
             }`}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}

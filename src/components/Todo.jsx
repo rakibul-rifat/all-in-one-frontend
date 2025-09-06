@@ -13,6 +13,7 @@ import {
 } from 'firebase/firestore';
 import { motion } from 'framer-motion';
 import BottomNav from './BottomNav';
+import { useTheme } from "../context/ThemeProvider"; // Import the theme context
 
 // 👇 Reusable collection reference
 const TODOS_REF = collection(db, "todos");
@@ -23,6 +24,21 @@ function App() {
   const [color, setColor] = useState('#36454F');
   const [editId, setEditId] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { theme } = useTheme(); // Get current theme
+
+  // Theme-based styles
+  const containerBg = theme === "dark" ? "bg-gray-900" : "bg-gray-100";
+  const todoBg = theme === "dark" ? "bg-gray-900" : "bg-white";
+  const textColor = theme === "dark" ? "text-gray-400" : "text-gray-600";
+  const titleColor = theme === "dark" ? "text-gray-300" : "text-gray-800";
+  const inputBg = theme === "dark" ? "bg-gray-800" : "bg-white";
+  const inputBorder = theme === "dark" ? "border-gray-700" : "border-gray-300";
+  const inputText = theme === "dark" ? "text-gray-200" : "text-gray-900";
+  const buttonPrimary = theme === "dark" ? "bg-blue-600" : "bg-blue-500";
+  const buttonEdit = theme === "dark" ? "bg-yellow-500" : "bg-yellow-400";
+  const buttonDelete = theme === "dark" ? "bg-red-600" : "bg-red-500";
+  const shadow = theme === "dark" ? "shadow" : "shadow-md";
+  const loadingBg = theme === "dark" ? "bg-gray-800" : "bg-gray-200";
 
   useEffect(() => {
     const q = query(TODOS_REF, orderBy("created", "desc"));
@@ -71,7 +87,7 @@ function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-800">
+      <div className={`min-h-screen flex items-center justify-center ${loadingBg}`}>
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
@@ -83,14 +99,14 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 pt-5 pb-5">
-      <div className="max-w-xl mx-auto p-2 bg-gray-900 rounded-xl shadow text-gray-400">
-        <h1 className="text-2xl font-bold mb-4 text-center">Todo App</h1>
+    <div className={`min-h-screen ${containerBg} pt-5 pb-5`}>
+      <div className={`max-w-xl mx-auto p-2 ${todoBg} rounded-xl ${shadow} ${textColor}`}>
+        <h1 className={`text-2xl font-bold mb-4 text-center ${titleColor}`}>Todo App</h1>
         <div className="flex flex-col sm:flex-row gap-2 mb-4">
           <input
             value={text}
             onChange={e => setText(e.target.value)}
-            className="flex-1 px-4 py-2 border rounded w-full"
+            className={`flex-1 px-4 py-2 border ${inputBorder} rounded w-full ${inputBg} ${inputText}`}
             placeholder="Enter todo..."
           />
           <div className="flex gap-2">
@@ -101,7 +117,10 @@ function App() {
               className="w-12 h-10 p-0 border rounded"
               title="Choose color"
             />
-            <button onClick={addTodo} className="bg-blue-500 text-white px-4 py-2 rounded whitespace-nowrap">
+            <button 
+              onClick={addTodo} 
+              className={`${buttonPrimary} text-white px-4 py-2 rounded whitespace-nowrap`}
+            >
               {editId ? 'Update' : 'Add'}
             </button>
           </div>
@@ -118,21 +137,23 @@ function App() {
               style={{ backgroundColor: todo.color || '#36454F' }}
             >
               <div className="flex-1 overflow-wrap break-words">
-                <p className="font-medium break-words">{todo.text}</p>
-                <p className="text-xs text-gray-300 mt-1">
+                <p className="font-medium break-words text-white">
+                  {todo.text}
+                </p>
+                <p className="text-xs text-gray-200 mt-1">
                   Last updated: {todo.updatedAt ? new Date(todo.updatedAt.seconds * 1000).toLocaleString() : ""}
                 </p>
               </div>
               <div className="flex gap-2 mt-2 sm:mt-0 sm:ml-2">
                 <button
                   onClick={() => editTodo(todo)}
-                  className="text-sm bg-yellow-400 text-white px-2 py-1 rounded"
+                  className={`text-sm ${buttonEdit} text-white px-2 py-1 rounded`}
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => deleteTodo(todo.id)}
-                  className="text-sm bg-red-500 text-white px-2 py-1 rounded"
+                  className={`text-sm ${buttonDelete} text-white px-2 py-1 rounded`}
                 >
                   Delete
                 </button>
@@ -140,8 +161,15 @@ function App() {
             </motion.li>
           ))}
         </ul>
+
+        <div className="mt-4">
+          <p className="text-center text-xs text-gray-500">
+            Firebase Firestore + React + Tailwind CSS
+          </p>
+        </div>
       </div>
-     <BottomNav />
+
+      <BottomNav />
     </div>
   );
 }

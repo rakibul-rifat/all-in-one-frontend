@@ -4,10 +4,9 @@ import {
   collection,
   getDocs
 } from 'firebase/firestore';
-
 import { motion } from 'framer-motion';
-
 import BottomNav from './BottomNav';
+import { useTheme } from '../context/ThemeProvider'; // Import the theme context
 
 const SENTENCES_REF = collection(db, "sentences");
 
@@ -19,6 +18,20 @@ function BanglaTypingPractice() {
   const [isFinished, setIsFinished] = useState(false);
   const [timeLimit, setTimeLimit] = useState(5); // default 5 minutes
   const totalSeconds = timeLimit * 60;
+  const { theme } = useTheme(); // Get current theme
+
+  // Theme-based styles
+  const containerBg = theme === "dark" ? "bg-black" : "bg-gray-100";
+  const textColor = theme === "dark" ? "text-gray-300" : "text-gray-800";
+  const titleColor = theme === "dark" ? "text-gray-300" : "text-gray-900";
+  const textAreaBg = theme === "dark" ? "bg-gray-800" : "bg-white";
+  const textAreaBorder = theme === "dark" ? "border-gray-700" : "border-gray-300";
+  const textAreaText = theme === "dark" ? "text-white" : "text-gray-900";
+  const displayBg = theme === "dark" ? "bg-gray-800" : "bg-gray-200";
+  const selectBg = theme === "dark" ? "bg-gray-700" : "bg-gray-300";
+  const selectText = theme === "dark" ? "text-white" : "text-gray-900";
+  const buttonBg = theme === "dark" ? "bg-blue-600" : "bg-blue-500";
+  const buttonHover = theme === "dark" ? "hover:bg-blue-700" : "hover:bg-blue-600";
 
   // Fetch a random Bangla sentence from Firestore
   const fetchRandomSentence = async () => {
@@ -104,17 +117,19 @@ function BanglaTypingPractice() {
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
       transition={{ duration: 0.6 }}
-      className="max-w-2xl mx-auto p-2 bg-black text-gray-300 rounded shadow mt-5"
+      className={`max-w-2xl mx-auto p-2 ${containerBg} rounded shadow mt-5`}
     >
-      <h2 className="text-xl font-bold mb-3 text-center">Bangla Typing Practice (Bijoy 52)</h2>
+      <h2 className={`text-xl font-bold mb-3 text-center ${titleColor}`}>
+        Bangla Typing Practice (Bijoy 52)
+      </h2>
 
       <div className="mb-3 text-center">
-        <label className="mr-2">🕒 Set Time Limit:</label>
+        <label className={`mr-2 ${textColor}`}>🕒 Set Time Limit:</label>
         <select
           value={timeLimit}
           onChange={(e) => setTimeLimit(Number(e.target.value))}
           disabled={startTime !== null}
-          className="p-1 bg-gray-700 text-white rounded"
+          className={`p-1 ${selectBg} ${selectText} rounded`}
         >
           {Array.from({ length: 30 }, (_, i) => (
             <option key={i + 1} value={i + 1}>
@@ -125,7 +140,7 @@ function BanglaTypingPractice() {
       </div>
 
       <div
-        className="overflow-auto p-3 mb-3 border rounded bg-gray-800 text-white"
+        className={`overflow-auto p-3 mb-3 border ${textAreaBorder} rounded ${displayBg}`}
         style={{ height: '200px', whiteSpace: 'pre-wrap' }}
       >
         {targetText.split('').map((char, idx) => {
@@ -145,13 +160,13 @@ function BanglaTypingPractice() {
         value={userInput}
         onChange={handleInputChange}
         disabled={isFinished}
-        className="w-full p-2 mb-3 border rounded bg-gray-800 text-white"
+        className={`w-full p-2 mb-3 border ${textAreaBorder} rounded ${textAreaBg} ${textAreaText}`}
         rows={3}
         placeholder="Start typing here..."
         style={{ height: "100px" }}
       />
 
-      <div className="flex flex-wrap justify-between text-sm mb-3">
+      <div className={`flex flex-wrap justify-between text-sm mb-3 ${textColor}`}>
         <p>⏰ Time Left: {Math.floor(timeLeft / 60)}m {timeLeft % 60}s</p>
         <p>✅ Accuracy: {calculateAccuracy()}%</p>
         <p>🏃‍♂️ WPM: {calculateWPM()}</p>
@@ -159,7 +174,7 @@ function BanglaTypingPractice() {
 
       <button
         onClick={resetTest}
-        className="bg-blue-500 text-white px-4 py-2 rounded w-full"
+        className={`${buttonBg} ${buttonHover} text-white px-4 py-2 rounded w-full transition-colors`}
       >
         {isFinished ? 'Restart' : 'Reset'}
       </button>

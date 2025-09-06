@@ -1,27 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Michroma&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --root-bg-light: #ffffff;
+  --root-bg-dark: #000000;
+}
 
 body {
   margin: 0;
- font-family: "Michroma", sans-serif, "Hind Siliguri";
+  font-family: "Michroma", sans-serif, "Hind Siliguri";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: black;
-};
+  background-color: var(--root-bg-light); /* Default light */
+}
+
+.dark body {
+  background-color: var(--root-bg-dark); /* Dark theme */
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 .michroma-regular {
   font-family: "Michroma", sans-serif;
   font-weight: 200;
   font-style: normal;
 }
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-.toolbar-background-sm{
-    background-color: rgb(9, 9, 176);
-  }
-  
+.toolbar-background-sm {
+  background-color: rgb(9, 9, 176);
+}
+html, body {
+  transition: background-color 0.4s ease-in-out;
+}
