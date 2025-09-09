@@ -13,10 +13,12 @@ body {
   font-family: "Michroma", sans-serif, "Hind Siliguri";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
   background-color: var(--root-bg-light); /* Default light */
 }
 
 .dark body {
+  background-color: #000000;
   background-color: var(--root-bg-dark); /* Dark theme */
 }
 
@@ -33,7 +35,4 @@ code {
 
 .toolbar-background-sm {
   background-color: rgb(9, 9, 176);
-}
-html, body {
-  transition: background-color 0.4s ease-in-out;
 }

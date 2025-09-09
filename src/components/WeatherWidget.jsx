@@ -78,7 +78,7 @@ export default function WeatherWidget() {
   // Theme-based styles
   const widgetBg = theme === "dark" 
     ? "sm:bg-black bg-gray-900" 
-    : "bg-gray-200 border-1 border-gray-300 sm:bg-white";
+    : "bg-white drop-shadow-lg border-1 border-gray-300 sm:bg-white";
     
   const textColor = theme === "dark" 
     ? "text-gray-200" 

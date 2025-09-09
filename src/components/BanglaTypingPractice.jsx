@@ -22,7 +22,7 @@ function BanglaTypingPractice() {
 
   // Theme-based styles
   const containerBg = theme === "dark" ? "bg-black" : "bg-gray-100";
-  const textColor = theme === "dark" ? "text-gray-300" : "text-gray-800";
+  const textColor = theme === "dark" ? "text-white" : "text-gray-800";
   const titleColor = theme === "dark" ? "text-gray-300" : "text-gray-900";
   const textAreaBg = theme === "dark" ? "bg-gray-800" : "bg-white";
   const textAreaBorder = theme === "dark" ? "border-gray-700" : "border-gray-300";
@@ -144,7 +144,7 @@ function BanglaTypingPractice() {
         style={{ height: '200px', whiteSpace: 'pre-wrap' }}
       >
         {targetText.split('').map((char, idx) => {
-          let className = '';
+          let className = textColor;
           if (idx < userInput.length) {
             className = userInput[idx] === char ? 'text-green-500' : 'text-red-500';
           }
