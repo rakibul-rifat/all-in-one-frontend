@@ -52,7 +52,7 @@ const Portfolio = () => {
   };
 
   // Theme-based styles with smooth transitions
-  const bgMain = `${theme === "dark" ? "sm:bg-black bg-gray-900 " : "bg-white drop-shadow-lg border-1 border-gray-300 sm:bg-white"} transition-colors duration-500`;
+  const bgMain = `${theme === "dark" ? "sm:bg-black bg-gray-900 " : "bg-white drop-shadow-lg border-1 border-gray-300  sm:drop-shadow-none sm:border-none"} transition-colors duration-500`;
   const textMain = `${theme === "dark" ? "text-gray-200" : "text-gray-800"} transition-colors duration-500`;
   const cardBg = `${theme === "dark" ? "bg-black" : "bg-white"} transition-colors duration-500`;
   const cardText = `${theme === "dark" ? "text-gray-300" : "text-gray-800"} transition-colors duration-500`;
@@ -66,7 +66,7 @@ const Portfolio = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className={`flex items-center ${bgMain} p-6 rounded-lg  space-x-6 mt-8 `}
+        className={`flex items-center ${bgMain} p-3 rounded-lg   space-x-6 mt-8 `}
       >
         <img
           src="https://avatars.githubusercontent.com/u/192508513?v=4"
@@ -74,9 +74,9 @@ const Portfolio = () => {
           className="w-32 h-32 rounded-full object-cover border-4 border-gray-500"
         />
         <div>
-          <h1 className={`text-xl font-bold ${cardText}`}>Rakibul Islam</h1>
-          <p className={`text-sm ${cardSubText}`}>Frontend Web Developer</p>
-          <p className={`text-sm ${cardText}`}>
+          <h1 className={`text-md font-bold ${cardText}`}>Rakibul Islam</h1>
+          <p className={`text-[12px] ${cardSubText}`}>Frontend Web Developer</p>
+          <p className={`text-[12px] ${cardText}`}>
             I love creating beautiful and interactive user interfaces.
           </p>
           <div className="flex space-x-4 mt-2">
