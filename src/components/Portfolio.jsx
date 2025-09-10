@@ -52,7 +52,7 @@ const Portfolio = () => {
   };
 
   // Theme-based styles with smooth transitions
-  const bgMain = `${theme === "dark" ? "sm:bg-black bg-gray-900 " : "bg-white drop-shadow-lg border-1 border-gray-300  sm:drop-shadow-none sm:border-none"} transition-colors duration-500`;
+  const bgMain = `${theme === "dark" ? "sm:bg-black bg-gray-900 " : "bg-white drop-shadow-lg border-2 border-gray-200  sm:drop-shadow-none sm:border-none"} transition-colors duration-500`;
   const textMain = `${theme === "dark" ? "text-gray-200" : "text-gray-800"} transition-colors duration-500`;
   const cardBg = `${theme === "dark" ? "bg-black" : "bg-white"} transition-colors duration-500`;
   const cardText = `${theme === "dark" ? "text-gray-300" : "text-gray-800"} transition-colors duration-500`;

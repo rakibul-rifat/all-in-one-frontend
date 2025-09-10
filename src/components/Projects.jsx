@@ -22,7 +22,7 @@ const Projects = () => {
 
   // Theme-based styles
   const sectionBg = theme === "dark" ? "bg-black" : "bg-white";
-  const cardBg = theme === "dark" ? "bg-gray-900" : "bg-white drop-shadow-lg border-1 border-gray-300 sm:bg-white";
+  const cardBg = theme === "dark" ? "bg-gray-900" : "bg-white drop-shadow-lg border-1 border-gray-200 sm:bg-white";
   const titleColor = theme === "dark" ? "text-gray-300" : "text-gray-800";
   const textColor = theme === "dark" ? "text-gray-300" : "text-gray-700";
   const hoverTextColor = theme === "dark" ? "group-hover:text-cyan-600" : "group-hover:text-blue-600";
@@ -30,7 +30,7 @@ const Projects = () => {
   const hoverIconColor = theme === "dark" ? "group-hover:text-cyan-600" : "group-hover:text-blue-600";
   const shadow = theme === "dark" ? "shadow-md" : "shadow-md";
   const hoverShadow = theme === "dark" ? "hover:shadow-xl" : "hover:shadow-lg";
-  const border = theme === "dark" ? "border-none"  : "border-1 border-gray-100";
+  const border = theme === "dark" ? "border-none"  : "border-2 border-gray-100";
   return (
     <section id="projects" className={`${sectionBg} pb-10`}>
       <h2 className={`text-2xl  font-bold text-center mb-10 ${titleColor} mt-20 `}>
