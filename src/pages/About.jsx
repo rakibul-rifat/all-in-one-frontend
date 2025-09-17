@@ -17,7 +17,7 @@ export default function About() {
   const { theme } = useTheme(); // Get current theme
 
   // Theme-based styles
-  const containerBg = theme === "dark" ? "bg-black" : "bg-white";
+  const containerBg = theme === "dark" ? "bg-black" : "bg-gray-100";
   const textColor = theme === "dark" ? "text-gray-200" : "text-gray-800";
   const skillBg = theme === "dark" ? "bg-gray-800" : "bg-gray-200";
   const skillText = theme === "dark" ? "text-gray-200" : "text-gray-700";

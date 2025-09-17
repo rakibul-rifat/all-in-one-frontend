@@ -21,8 +21,8 @@ const Projects = () => {
   const { theme } = useTheme(); // Get current theme
 
   // Theme-based styles
-  const sectionBg = theme === "dark" ? "bg-black" : "bg-white";
-  const cardBg = theme === "dark" ? "bg-gray-900" : "bg-white drop-shadow-lg border-1 border-gray-200 sm:bg-white";
+  const sectionBg = theme === "dark" ? "bg-black" : "bg-gray-100";
+  const cardBg = theme === "dark" ? "bg-gray-900" : "bg-gray-50 border-1 border-gray-200 sm:bg-white";
   const titleColor = theme === "dark" ? "text-gray-300" : "text-gray-800";
   const textColor = theme === "dark" ? "text-gray-300" : "text-gray-700";
   const hoverTextColor = theme === "dark" ? "group-hover:text-cyan-600" : "group-hover:text-blue-600";
@@ -37,7 +37,7 @@ const Projects = () => {
         My Projects
       </h2>
 
-      <div className="max-w-4xl mx-auto grid gap-2 md:grid-cols-2 ">
+      <div className="max-w-4xl text-sm mx-auto grid gap-2 md:grid-cols-2 ">
         {projectList.map((project, index) => (
           <motion.div
             key={project.name}

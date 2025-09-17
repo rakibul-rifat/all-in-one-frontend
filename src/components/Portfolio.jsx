@@ -52,9 +52,9 @@ const Portfolio = () => {
   };
 
   // Theme-based styles with smooth transitions
-  const bgMain = `${theme === "dark" ? "sm:bg-black bg-gray-900 " : "bg-white drop-shadow-lg border-2 border-gray-200  sm:drop-shadow-none sm:border-none"} transition-colors duration-500`;
+  const bgMain = `${theme === "dark" ? "sm:bg-black bg-gray-900 " : " drop-shadow-lg border-2 border-gray-200  sm:drop-shadow-none sm:border-none"} transition-colors duration-500`;
   const textMain = `${theme === "dark" ? "text-gray-200" : "text-gray-800"} transition-colors duration-500`;
-  const cardBg = `${theme === "dark" ? "bg-black" : "bg-white"} transition-colors duration-500`;
+  const cardBg = `${theme === "dark" ? "bg-black" : "bg-gray-50"} transition-colors duration-500`;
   const cardText = `${theme === "dark" ? "text-gray-300" : "text-gray-800"} transition-colors duration-500`;
   const cardSubText = `${theme === "dark" ? "text-gray-400" : "text-gray-500"} transition-colors duration-500`;
 
@@ -66,12 +66,12 @@ const Portfolio = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className={`flex items-center ${bgMain} p-3 rounded-lg   space-x-6 mt-8 `}
+        className={`flex items-center ${bgMain} p-3 rounded-lg  sm:mx-20  space-x-6 mt-8 `}
       >
         <img
           src="https://avatars.githubusercontent.com/u/192508513?v=4"
           alt="Profile"
-          className="w-32 h-32 rounded-full object-cover border-4 border-gray-500"
+          className="w-32 h-32 rounded-full object-cover  border-4 border-gray-500"
         />
         <div>
           <h1 className={`text-md font-bold ${cardText}`}>Rakibul Islam</h1>

@@ -22,10 +22,10 @@ function App() {
   const { theme } = useTheme();
 
   // Meta theme-color (status bar)
-  const themeColor = theme === "dark" ? "#111827" : "#ffffff"; // green for dark, red for light
+  const themeColor = theme === "dark" ? "#111827" : "#f3f4f6"; // green for dark, red for light
 
   // Page background (body / html)
-  const pageBg = theme === "dark" ? "#000000" : "#ffffff";
+  const pageBg = theme === "dark" ? "#000000" : "#f3f4f6";
 
   useEffect(() => {
     // Update <meta name="theme-color">

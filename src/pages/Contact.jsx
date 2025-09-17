@@ -16,7 +16,7 @@ export default function Contact() {
   const { theme } = useTheme(); // Get current theme
 
   // Theme-based styles
-  const containerBg = theme === "dark" ? "bg-black" : "bg-white";
+  const containerBg = theme === "dark" ? "bg-black" : "bg-gray-100";
   const formBg = theme === "dark" ? "bg-gray-900" : "bg-white";
   const titleColor = theme === "dark" ? "text-gray-500" : "text-gray-600";
   const labelColor = theme === "dark" ? "text-white" : "text-gray-800";

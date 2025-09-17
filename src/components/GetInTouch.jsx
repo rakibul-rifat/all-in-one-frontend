@@ -8,7 +8,7 @@ export default function GetInTouch() {
   const { theme } = useTheme(); // Get current theme
 
   // Theme-based styles
-  const containerBg = theme === "dark" ? "bg-gray-900" : "bg-white";
+  const containerBg = theme === "dark" ? "bg-gray-900" : "bg-gray-100";
   const containerBorder = theme === "dark" ? "border-gray-700" : "border-gray-300";
   const cardBg = theme === "dark" ? "bg-gray-800" : "bg-white";
   const cardHover = theme === "dark" ? "hover:bg-gray-700" : "hover:bg-gray-200";

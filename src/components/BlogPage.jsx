@@ -96,15 +96,15 @@ export default function BlogPage() {
   const { theme } = useTheme(); // Get current theme
 
   // Theme-based styles
-  const containerBg = theme === "dark" ? "bg-black" : "bg-white";
+  const containerBg = theme === "dark" ? "bg-black" : "bg-gray-100";
   const textColor = theme === "dark" ? "text-gray-300" : "text-gray-800";
   const titleColor = theme === "dark" ? "text-gray-300" : "text-gray-900";
-  const formBg = theme === "dark" ? "bg-gray-800" : "bg-white";
+  const formBg = theme === "dark" ? "bg-gray-800" : "bg-gray-100";
   const formText = theme === "dark" ? "text-gray-300" : "text-gray-800";
-  const inputBg = theme === "dark" ? "bg-gray-700" : "bg-white";
+  const inputBg = theme === "dark" ? "bg-gray-700" : "bg-gray-100";
   const inputBorder = theme === "dark" ? "border-gray-600" : "border-gray-300";
   const inputText = theme === "dark" ? "text-white" : "text-gray-900";
-  const blogCardBg = theme === "dark" ? "bg-gray-900" : "bg-white";
+  const blogCardBg = theme === "dark" ? "bg-gray-900" : "bg-gray-100";
   const blogCardBorder = theme === "dark" ? "border-gray-700" : "border-gray-300";
   const buttonPrimary = theme === "dark" ? "bg-blue-600" : "bg-blue-500";
   const buttonSuccess = theme === "dark" ? "bg-green-600" : "bg-green-500";
@@ -223,7 +223,7 @@ export default function BlogPage() {
           />
           <motion.button
             onClick={handleAdminLogin}
-            className={`${buttonPrimary} text-white px-4 py-2 mt-2`}
+            className={`${buttonPrimary} text-white ${buttonHover} px-4 py-2 mt-2`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
