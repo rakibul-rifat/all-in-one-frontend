@@ -16,7 +16,7 @@ const Navbar = () => {
   ];
 
   // Theme-based styles
-  const navBg = theme === "dark" ? "bg-gray-900" : "bg-gray-100";
+  const navBg = theme === "dark" ? "bg-gray-900" : "bg-gray-300 sm:bg-gray-100 ";
   const desktopNavBg = theme === "dark" ? "sm:bg-black" : "sm:bg-gray-100";
   const textColor = theme === "dark" ? "text-gray-400" : "text-gray-600";
   const linkColor = theme === "dark" ? "text-gray-500" : "text-gray-600";

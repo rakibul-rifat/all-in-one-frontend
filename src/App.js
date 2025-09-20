@@ -16,13 +16,14 @@ import HomeBtn from "./components/HomeBtn.jsx";
 import WeatherWidget from "./components/WeatherWidget.jsx";
 import BottomNav from "./components/BottomNav.jsx";
 import ScrollToTop from "./components/ScrollToTop";
+import ImageSlider from "./components/ImageSlider.jsx";
 
 
 function App() {
   const { theme } = useTheme();
 
   // Meta theme-color (status bar)
-  const themeColor = theme === "dark" ? "#111827" : "#f3f4f6"; // green for dark, red for light
+  const themeColor = theme === "dark" ? "#111827" : "#D1D5DB"; // green for dark, red for light
 
   // Page background (body / html)
   const pageBg = theme === "dark" ? "#000000" : "#f3f4f6";
@@ -71,6 +72,7 @@ function App() {
         <Route path="/HomeBtn" element={<HomeBtn />} />
         <Route path="/Weather" element={<WeatherWidget />} />
         <Route path="/BottomNav" element={<BottomNav />} />
+        <Route path="/ImageSlider" element={<ImageSlider />} />
       </Routes>
     </Router>
   );

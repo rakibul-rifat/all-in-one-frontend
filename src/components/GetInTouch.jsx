@@ -9,7 +9,7 @@ export default function GetInTouch() {
 
   // Theme-based styles
   const containerBg = theme === "dark" ? "bg-gray-900" : "bg-gray-100";
-  const containerBorder = theme === "dark" ? "border-gray-700" : "border-gray-300";
+  const containerBorder = theme === "dark" ? "border-gray-700" : "";
   const cardBg = theme === "dark" ? "bg-gray-800" : "bg-white";
   const cardHover = theme === "dark" ? "hover:bg-gray-700" : "hover:bg-gray-200";
   const titleColor = theme === "dark" ? "text-cyan-400" : "text-blue-600";

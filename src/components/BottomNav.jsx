@@ -18,7 +18,7 @@ export default function BottomNav() {
   const { theme } = useTheme(); // Get current theme
 
   // Theme-based styles
-  const navBg = theme === "dark" ? "bg-gray-900" : "bg-gray-100";
+  const navBg = theme === "dark" ? "bg-gray-900" : "bg-gray-300 sm:bg-gray-100";
   const navBorder = theme === "dark" ? "border-gray-800" : "border-gray-300";
   const activeBg = theme === "dark" ? "bg-gray-900" : "bg-gray-100";
   const activeBorder = theme === "dark" ? "border-gray-800" : "border-gray-300";
