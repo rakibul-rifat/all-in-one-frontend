@@ -30,7 +30,7 @@ export default function GetInTouch() {
       whileInView={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       viewport={{ once: true, amount: 0.3 }}
-      className={`max-w-4xl mx-auto ${containerBg} p-8 rounded-2xl ${shadow} space-y-6 border ${containerBorder} mb-10 pb-10`}
+      className={`max-w-4xl mx-auto ${containerBg} p-8 rounded-2xl ${shadow} space-y-6  ${containerBorder} mb-10 pb-10`}
     >
       {/* Heading */}
       <h2 className={`text-3xl font-bold text-center ${titleColor} ${titleGlow}`}>

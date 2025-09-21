@@ -52,6 +52,7 @@ const Portfolio = () => {
   };
 
   // Theme-based styles with smooth transitions
+   const bg = `${theme === "dark" ? "bg-black " : " bg-gray-100"} transition-colors duration-500`;
   const bgMain = `${theme === "dark" ? "sm:bg-black bg-gray-900 " : " bg-gray-300 sm:bg-gray-100   sm:drop-shadow-none sm:border-none"} transition-colors duration-500`;
   const textMain = `${theme === "dark" ? "text-gray-200" : "text-gray-800"} transition-colors duration-500`;
   const cardBg = `${theme === "dark" ? "bg-black" : ""} transition-colors duration-500`;
@@ -59,7 +60,7 @@ const Portfolio = () => {
   const cardSubText = `${theme === "dark" ? "text-gray-400" : "text-gray-500"} transition-colors duration-500`;
 
   return (
-    <div className={`max-w-4xl mx-auto p-1 rounded-xl mt-7 sm:mt-20  ${textMain}`}>
+    <div className={`max-w-4xl ${bg} mx-auto p-1  pt-8 sm:pt-20  ${textMain}`}>
       {/* Profile Section */}
       <motion.div
         variants={zoomInVariant}
@@ -94,6 +95,7 @@ const Portfolio = () => {
           </div>
         </div>
       </motion.div>
+      
 
       <WeatherWidget />
 

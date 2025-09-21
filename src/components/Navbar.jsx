@@ -25,7 +25,7 @@ const Navbar = () => {
   const mobileLinkColor = theme === "dark" ? "text-gray-300" : "text-gray-700";
   const mobileLinkHover = theme === "dark" ? "hover:text-cyan-600" : "hover:text-blue-600";
   const borderColor = theme === "dark" ? "border-gray-800" : "border-gray-300";
-  const shadow = theme === "dark" ? "shadow-md" : "shadow-md";
+  const shadow = theme === "dark" ? "shadow-md" : "shadow-sm";
 
   return (
     <nav className={`${desktopNavBg} ${navBg} rounded-b-lg ${shadow} fixed top-0 left-0 w-full z-0`}>

@@ -5,9 +5,11 @@ import Project from "./Project";
 import BottomNav from "../components/BottomNav";
 import GetInTouch from "../components/GetInTouch";
 import ImageSlider from "../components/ImageSlider";
+import { useTheme } from "../context/ThemeProvider"; // ✅ import theme
 
 const Home = () => {
   const [showLoader, setShowLoader] = useState(false);
+  const { theme } = useTheme(); // ✅ get theme
 
   useEffect(() => {
     const hasLoaded = localStorage.getItem("hasLoaded");
@@ -42,33 +44,41 @@ const Home = () => {
     }
   }, []);
 
+  // ✅ Theme-based styles
+  const pageBg = theme === "dark" ? "bg-black" : "bg-gray-100";
+  const loaderBg = theme === "dark" ? "bg-black" : "bg-gray-100";
+  const loaderText = theme === "dark" ? "text-cyan-400" : "text-blue-600";
+  const loaderTrack = theme === "dark" ? "bg-gray-800" : "bg-gray-300";
+
   return (
     <>
       {showLoader && (
         <div
           id="loader-wrapper"
-          className="fixed inset-0 bg-black flex flex-col items-center justify-center z-50"
+          className={`fixed inset-0 ${loaderBg} flex flex-col items-center justify-center z-50`}
         >
-          <p className="text-cyan-400 mb-2">Loading</p>
-          <div className="w-64 h-2 bg-gray-700 rounded-full overflow-hidden">
+          <p className={`${loaderText} mb-2`}>Loading</p>
+          <div className={`w-64 h-2 ${loaderTrack} rounded-full overflow-hidden`}>
             <div
               id="loader-bar"
               className="h-full bg-cyan-400 rounded-full"
               style={{ width: "0%" }}
             ></div>
           </div>
-          <p id="loader-percentage" className="text-cyan-400 mt-2">0%</p>
+          <p id="loader-percentage" className={`${loaderText} mt-2`}>
+            0%
+          </p>
         </div>
       )}
 
       {/* Main Content */}
-    <div className=" pb-10">
-      <Portfolio />
-      {/* <ImageSlider /> */}
-      <Project />
-      <GetInTouch />
-      <BottomNav />
-    </div>
+      <div className={`pt-0 pb-10 ${pageBg}`}>
+        <Portfolio />
+        <ImageSlider />
+        <Project />
+        <GetInTouch />
+        <BottomNav />
+      </div>
     </>
   );
 };

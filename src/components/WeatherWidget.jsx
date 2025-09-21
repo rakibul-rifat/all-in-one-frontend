@@ -76,6 +76,7 @@ export default function WeatherWidget() {
   }, []);
 
   // Theme-based styles
+  
   const widgetBg = theme === "dark" 
     ? "sm:bg-black bg-gray-900" 
     : " bg-gray-300 sm:bg-gray-100  sm:drop-shadow-none sm:border-none";

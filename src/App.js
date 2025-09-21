@@ -26,7 +26,7 @@ function App() {
   const themeColor = theme === "dark" ? "#111827" : "#D1D5DB"; // green for dark, red for light
 
   // Page background (body / html)
-  const pageBg = theme === "dark" ? "#000000" : "#f3f4f6";
+  const pageBg = theme === "dark" ? "#000000" : "#D1D5DB";
 
   useEffect(() => {
     // Update <meta name="theme-color">

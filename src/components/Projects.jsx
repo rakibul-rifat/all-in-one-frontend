@@ -33,7 +33,7 @@ const Projects = () => {
   const border = theme === "dark" ? "border-none"  : "";
   return (
     <section id="projects" className={`${sectionBg} pb-10`}>
-      <h2 className={`text-2xl  font-bold text-center mb-10 ${titleColor} mt-20 `}>
+      <h2 className={`text-2xl  font-bold text-center mb-10 ${titleColor} pt-20 `}>
         My Projects
       </h2>
 
