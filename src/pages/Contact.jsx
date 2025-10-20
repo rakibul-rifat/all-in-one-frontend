@@ -48,8 +48,9 @@ export default function Contact() {
   const whatsappMessage = `Hello, I want to get in touch with you!`;
 
   return (
+    <div className={`w-full ${containerBg}`}>
 
-    <div className={`max-w-4xl mx-auto px-1 mt-5 pt-5 mb-10 pb-10 ${containerBg}`}>
+    <div className={`max-w-4xl mx-auto px-1 mt-5 pt-5  pb-20 ${containerBg}`}>
 
     <div className="max-w-4xl mx-auto px-1 mt-5 pt-5 mb-10 pb-10 ">
 
@@ -157,6 +158,7 @@ export default function Contact() {
       </motion.a>
 
       <BottomNav />
+    </div>
     </div>
     </div>
   );

@@ -96,7 +96,9 @@ export default function BlogPage() {
   const { theme } = useTheme(); // Get current theme
 
   // Theme-based styles
-  const containerBg = theme === "dark" ? "bg-black" : "bg-gray-100";
+  // Use sectionBg logic from Projects.jsx
+  const sectionBg = theme === "dark" ? "bg-black" : "bg-gray-100";
+  const containerBg = sectionBg;
   const textColor = theme === "dark" ? "text-gray-300" : "text-gray-800";
   const titleColor = theme === "dark" ? "text-gray-300" : "text-gray-900";
   const formBg = theme === "dark" ? "bg-gray-800" : "bg-gray-100";
@@ -188,8 +190,9 @@ export default function BlogPage() {
   };
 
   return (
+    <div className={`w-full ${sectionBg}`}>
     <motion.div 
-      className={`max-w-4xl mx-auto p-1 mt-9 space-y-6 mb-10 pb-10 ${containerBg}`}
+      className={`max-w-4xl mx-auto p-1  mt-9 space-y-6 mb-10 pb-10 ${containerBg}`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -438,5 +441,6 @@ export default function BlogPage() {
         ))}
       </motion.div>
     </motion.div>
+    </div>
   );
 }

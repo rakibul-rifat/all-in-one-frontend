@@ -27,7 +27,8 @@ export default function About() {
   const gradientTo = theme === "dark" ? "to-pink-400" : "to-pink-600";
 
   return (
-    <div className={`max-w-4xl mx-auto ${containerBg} ${textColor} px-1 sm:px-6 py-10 mt-5 mb-5`}>
+    <div className={`w-full ${containerBg}`}>
+    <div className={`max-w-4xl mx-auto ${containerBg} ${textColor} px-1 sm:px-6 py-10 mt-5 pb-5`}>
       <Navbar />
 
       {/* Heading */}
@@ -79,6 +80,7 @@ export default function About() {
 
       <GetInTouch />
       <BottomNav />
+    </div>
     </div>
   );
 }
