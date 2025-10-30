@@ -17,6 +17,7 @@ import WeatherWidget from "./components/WeatherWidget.jsx";
 import BottomNav from "./components/BottomNav.jsx";
 import ScrollToTop from "./components/ScrollToTop";
 import ImageSlider from "./components/ImageSlider.jsx";
+import DownloadResumeButton from "./components/DownloadResumeButton.jsx";
 
 
 function App() {
@@ -73,6 +74,7 @@ function App() {
         <Route path="/Weather" element={<WeatherWidget />} />
         <Route path="/BottomNav" element={<BottomNav />} />
         <Route path="/ImageSlider" element={<ImageSlider />} />
+        <Route path="/DownloadResumeButton" element={<DownloadResumeButton />} />
       </Routes>
     </Router>
   );
